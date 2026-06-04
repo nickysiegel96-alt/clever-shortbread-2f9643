@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>OutreachOS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body,#app{height:100%;background:#07090f;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#e2e8f0;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:#1e2d45;border-radius:4px}
+button{cursor:pointer;font-family:inherit;border:none;outline:none;background:none}
+input,textarea,select{font-family:inherit;outline:none;-webkit-appearance:none;appearance:none}
+textarea{resize:none}
+select option{background:#0d1420}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes dot{0%,80%,100%{opacity:0}40%{opacity:1}}
+.au{animation:up .2s ease both}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  OutreachOS — pure vanilla JS, zero dependencies
+//  State lives in window.DB — shared across all views
+// ═══════════════════════════════════════════════════════════════
+
+const INTERNS = ['Jared','Drew','Will','Izzy','Michael','Harrison','Olivia','Julian','Spyro','Serena','Ryan','Leon'];
+
+
+const PALETTE = ['#4f7ef7','#a855f7','#22c55e','#f59e0b','#ec4899','#14b8a6','#f97316','#06b6d4','#8b5cf6','#ef4444','#84cc16','#0ea5e9'];
+const color = name => PALETTE[INTERNS.indexOf(name) % PALETTE.length] || '#4f7ef7';
+
+// ── Shared DB — GitHub-backed sync ────────────────────────────
+const GH_REPO = 'k8g5rrh9pr-ctrl/k8g5rrh9pr-ctrl.github.io';
+const GH_FILE = 'outreachos-data.json';
+const RAW_URL = 'https://raw.githubusercontent.com/'+GH_REPO+'/main/'+GH_FILE;
+const API_URL = 'https://api.github.com/repos/'+GH_REPO+'/contents/'+GH_FILE;
+const LS_KEY  = 'outreachos_db_v1';
+const LS_PAT  = 'outreachos_pat';
+let _sha = null, _pushTimer = null, _pushing = false;
+
+function loadDB(){ try{ const d=JSON.parse(localStorage.getItem(LS_KEY)); if(d&&Array.isArray(d.brands)) return d; }catch(e){} return{brands:[]}; }
+function saveLocal(){ try{localStorage.setItem(LS_KEY,JSON.stringify(window.DB));}catch(e){} }
+function getPAT(){ return localStorage.getItem(LS_PAT)||''; }
+function setPAT(t){ localStorage.setItem(LS_PAT,t.trim()); }
+
+async function pullDB(){
+  try{
+    const r=await fetch(RAW_URL+'?t='+Date.now());
+    if(!r.ok) return false;
+    const d=await r.json();
+    if(d&&Array.isArray(d.brands)){
+      const rs=JSON.stringify(d.brands.map(b=>b.name).sort());
+      const ls=JSON.stringify(window.DB.brands.map(b=>b.name).sort());
+      if(rs!==ls){ window.DB=d; saveLocal(); return true; }
+    }
+  }catch(e){}
+  return false;
+}
+
+async function pushDB(){
+  const pat=getPAT(); if(!pat||_pushing) return; _pushing=true;
+  try{
+    const meta=await fetch(API_URL,{headers:{Authorization:'token '+pat,Accept:'application/vnd.github.v3+json'}});
+    if(meta.ok){ const j=await meta.json(); _sha=j.sha; }
+    const encoded=btoa(unescape(encodeURIComponent(JSON.stringify(window.DB,null,2))));
+    const bodyObj={message:'OutreachOS save',content:encoded}; if(_sha) bodyObj.sha=_sha; const body=JSON.stringify(bodyObj);
+    const res=await fetch(API_URL,{method:'PUT',headers:{Authorization:'token '+pat,'Content-Type':'application/json',Accept:'application/vnd.github.v3+json'},body});
+    if(res.ok){ const j=await res.json(); _sha=j.content&&j.content.sha||_sha; }
+  }catch(e){ console.warn('push failed',e); }
+  _pushing=false;
+}
+
+function schedulePush(){ saveLocal(); clearTimeout(_pushTimer); _pushTimer=setTimeout(pushDB,1000); }
+
+setInterval(async()=>{ try{ const u=await pullDB(); if(u&&window._onDBUpdate) window._onDBUpdate(); }catch(e){} },10000);
+
+window.DB = loadDB();
+pullDB().then(u=>{ if(u&&window._onDBUpdate) window._onDBUpdate(); }).catch(()=>{});
+
+function normKey(s){ return (s||'').toLowerCase().replace(/[^a-z0-9 ]/g,'').replace(/\s+/g,' ').trim(); }
+
+function fmt(raw){
+  raw = raw.trim();
+  const k = normKey(raw);
+  const sp = {liquidiv:'Liquid IV',lmnt:'LMNT',bmw:'BMW',cbd:'CBD',redbull:'Red Bull',cbdoil:'CBD Oil'};
+  return sp[k] || raw.replace(/\b\w/g,c=>c.toUpperCase());
+}
+
+// check a list of brand names against DB for a given intern
+function checkBrands(names, intern){
+  const result = { conflict:[], mine:[], newBrand:[] };
+  names.forEach(raw=>{
+    const name = raw.trim();
+    if(!name) return;
+    const k = normKey(name);
+    const hit = window.DB.brands.find(b=>normKey(b.name)===k);
+    if(!hit)           result.newBrand.push(fmt(name));
+    else if(hit.owner===intern) result.mine.push(hit.name);
+    else               result.conflict.push({name:hit.name, owner:hit.owner});
+  });
+  return result;
+}
+
+function addBrand(name, intern){
+  const k = normKey(name);
+  if(window.DB.brands.find(b=>normKey(b.name)===k)) return false;
+  window.DB.brands.push({name:fmt(name), owner:intern, ts:Date.now()});
+  schedulePush();
+  return true;
+}
+
+// ── Tiny DOM helpers ───────────────────────────────────────────
+const h = (tag, attrs={}, ...children) => {
+  const el = document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs)){
+    if(k==='style'&&typeof v==='object') Object.assign(el.style,v);
+    else if(k.startsWith('on')) el.addEventListener(k.slice(2).toLowerCase(),v);
+    else el.setAttribute(k,v);
+  }
+  children.flat().forEach(c=>{
+    if(c==null||c===false) return;
+    el.appendChild(typeof c==='string'?document.createTextNode(c):c);
+  });
+  return el;
+};
+const div  = (a,...c)=>h('div',a,...c);
+const btn  = (a,...c)=>h('button',a,...c);
+const span = (a,...c)=>h('span',a,...c);
+const txt  = (a,...c)=>h('textarea',a,...c);
+const inp  = a=>h('input',a);
+
+function mount(el){ document.getElementById('app').replaceChildren(el); }
+
+// ── Shared style tokens ────────────────────────────────────────
+const S = {
+  page:  {height:'100vh',overflowY:'auto',background:'#07090f',padding:'0 0 40px'},
+  card:  {background:'#0d1420',border:'1px solid #1a2638',borderRadius:'14px',padding:'18px 16px'},
+  label: {fontSize:'11px',fontWeight:'600',color:'#4a5568',letterSpacing:'.06em',textTransform:'uppercase',marginBottom:'6px'},
+  // buttons
+  bPrimary: {background:'#1d4ed8',border:'1px solid #3b82f640',color:'#fff',borderRadius:'10px',padding:'12px',fontSize:'14px',fontWeight:'600',width:'100%',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:'8px'},
+  bSuccess: {background:'#14532d',border:'1px solid #22c55e40',color:'#22c55e',borderRadius:'8px',padding:'6px 12px',fontSize:'12px',fontWeight:'600',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:'5px',whiteSpace:'nowrap'},
+  bDefault: {background:'#111827',border:'1px solid #1e2d45',color:'#64748b',borderRadius:'8px',padding:'6px 12px',fontSize:'12px',fontWeight:'500',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:'5px',whiteSpace:'nowrap'},
+  bGhost:   {background:'transparent',border:'1px solid #1a2638',color:'#4a5568',borderRadius:'8px',padding:'5px 10px',fontSize:'12px',cursor:'pointer'},
+  input: {background:'#0a0f1a',border:'1px solid #1a2638',color:'#e2e8f0',borderRadius:'10px',padding:'11px 14px',fontSize:'14px',width:'100%',display:'block'},
+  textarea: {background:'#0a0f1a',border:'1px solid #1a2638',color:'#e2e8f0',borderRadius:'10px',padding:'12px 14px',fontSize:'13px',width:'100%',display:'block',lineHeight:'1.7',fontFamily:'-apple-system,BlinkMacSystemFont,monospace'},
+};
+
+// focus style via JS
+function focusStyle(el){
+  el.addEventListener('focus',()=>{ el.style.borderColor='#4f7ef7'; el.style.boxShadow='0 0 0 3px #4f7ef715'; });
+  el.addEventListener('blur', ()=>{ el.style.borderColor='#1a2638'; el.style.boxShadow='none'; });
+  return el;
+}
+
+// hover style
+function hoverStyle(el, hoverBg, normalBg){
+  el.addEventListener('mouseenter',()=>el.style.background=hoverBg);
+  el.addEventListener('mouseleave',()=>el.style.background=normalBg);
+  return el;
+}
+
+// ── Toast ──────────────────────────────────────────────────────
+let toastEl = null;
+function toast(msg, type='ok'){
+  if(toastEl) toastEl.remove();
+  const colors = { ok:{bg:'#052e16',border:'#22c55e40',color:'#22c55e'}, err:{bg:'#450a0a',border:'#ef444440',color:'#ef4444'}, warn:{bg:'#422006',border:'#f59e0b40',color:'#f59e0b'} };
+  const c = colors[type]||colors.ok;
+  toastEl = div({style:{position:'fixed',bottom:'24px',right:'16px',zIndex:'999',
+    background:c.bg,border:`1px solid ${c.border}`,color:c.color,
+    borderRadius:'10px',padding:'10px 16px',fontSize:'13px',fontWeight:'500',
+    animation:'up .2s ease',maxWidth:'280px',lineHeight:'1.4'}}, msg);
+  document.body.appendChild(toastEl);
+  setTimeout(()=>toastEl&&toastEl.remove(), 3500);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SCREEN 1: Who are you?
+// ════════════════════════════════════════════════════════════════
+function renderNameSelect(){
+  const wrap = div({style:{...S.page,display:'flex',alignItems:'center',justifyContent:'center',padding:'20px'}});
+  const inner = div({style:{width:'100%',maxWidth:'400px',animation:'up .22s ease'}});
+
+  inner.appendChild(div({style:{textAlign:'center',marginBottom:'32px'}},
+    div({style:{width:'52px',height:'52px',borderRadius:'14px',background:'#4f7ef715',border:'1px solid #4f7ef730',
+      display:'flex',alignItems:'center',justifyContent:'center',fontSize:'24px',margin:'0 auto 12px'}},'⬡'),
+    div({style:{fontSize:'24px',fontWeight:'800',color:'#f1f5f9',letterSpacing:'-.5px'}},'OutreachOS'),
+    div({style:{fontSize:'13px',color:'#4a5568',marginTop:'4px'}},'Brand conflict checker'),
+  ));
+
+  const card = div({style:{...S.card}});
+  card.append(
+    div({style:{fontSize:'16px',fontWeight:'700',color:'#f1f5f9',marginBottom:'4px',textAlign:'center'}},'Who are you?'),
+    div({style:{fontSize:'12px',color:'#4a5568',marginBottom:'18px',textAlign:'center'}},'Select your name to continue'),
+  );
+
+  const allNames = [...INTERNS];
+  const grid = div({style:{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'7px'}});
+
+  allNames.forEach(name=>{
+    const pc = color(name);
+    const pill = document.createElement('button');
+    pill.textContent = name;
+    Object.assign(pill.style,{
+      padding:'11px 12px',borderRadius:'10px',background:'#0a0f1a',
+      border:'1px solid #1a2638',color:'#64748b',fontSize:'13px',
+      fontWeight:'600',width:'100%',cursor:'pointer',textAlign:'center',
+      transition:'all .12s',fontFamily:'inherit'
+    });
+    pill.addEventListener('mouseenter',()=>{ if(!pill._active){ pill.style.borderColor=pc+'60'; pill.style.color=pc; } });
+    pill.addEventListener('mouseleave',()=>{ if(!pill._active){ pill.style.borderColor='#1a2638'; pill.style.color='#64748b'; } });
+    pill.addEventListener('click',()=>{ renderInternView(name); });
+    grid.appendChild(pill);
+  });
+
+  card.appendChild(grid);
+  inner.appendChild(card);
+  inner.appendChild(div({style:{textAlign:'center',marginTop:'14px',fontSize:'11px',color:'#1a2638'}},'OutreachOS · Shared brand tracker'));
+  wrap.appendChild(inner);
+  mount(wrap);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SCREEN 2: INTERN VIEW  — check + add brands
+// ════════════════════════════════════════════════════════════════
+function renderInternView(internName){
+  const c = color(internName);
+
+  const page = div({style:{...S.page,overflowY:'auto',height:'100vh'}});
+
+  // ── top bar ──
+  const topbar = div({style:{background:'#0a0f1a',borderBottom:'1px solid #1a2638',
+    padding:'12px 16px',display:'flex',alignItems:'center',gap:'10px',position:'sticky',top:'0',zIndex:'10'}});
+
+  const avatar = div({style:{width:'32px',height:'32px',borderRadius:'50%',background:c+'20',
+    border:`1.5px solid ${c}50`,display:'flex',alignItems:'center',justifyContent:'center',
+    fontSize:'13px',fontWeight:'800',color:c,flexShrink:'0'}}, internName[0]);
+
+  const nameEl = div({style:{flex:'1'}},
+    div({style:{fontSize:'14px',fontWeight:'700',color:'#f1f5f9'}}, internName),
+    div({style:{fontSize:'11px',color:'#334155',marginTop:'1px',id:'mycount'}}, ''),
+  );
+
+  function updateCount(){
+    const mine = window.DB.brands.filter(b=>b.owner===internName).length;
+    nameEl.querySelector('div:last-child').textContent = `${mine} brand${mine!==1?'s':''} on your tab`;
+  }
+  updateCount();
+
+  const switchBtn = btn({
+    style:{fontSize:'12px',color:'#4a5568',padding:'5px 10px',border:'1px solid #1a2638',borderRadius:'7px',display:'flex',alignItems:'center',gap:'5px'},
+    onClick: renderNameSelect
+  }, '↩ Switch');
+
+  const logo = div({style:{fontSize:'10px',background:'#4f7ef710',color:'#4f7ef7',padding:'3px 8px',borderRadius:'7px',fontWeight:'600'}},'⬡ OutreachOS');
+
+  const syncDot=div({style:{width:'8px',height:'8px',borderRadius:'50%',background:'#22c55e',flexShrink:'0',transition:'background .3s'},title:'Sync status'});
+  window._onDBUpdate=()=>{ refreshTabPreview(); syncDot.style.background='#4f7ef7'; setTimeout(()=>syncDot.style.background='#22c55e',700); };
+  topbar.append(avatar, nameEl, logo, syncDot, switchBtn);
+  page.appendChild(topbar);
+
+  // ── main content ──
+  const content = div({style:{padding:'16px 14px',display:'flex',flexDirection:'column',gap:'14px',maxWidth:'560px',margin:'0 auto'}});
+
+  // ── CHECK CARD ──
+  const checkCard = div({style:{...S.card,border:'1px solid #4f7ef725',boxShadow:'0 0 20px #4f7ef705'}});
+
+  checkCard.appendChild(div({style:{fontSize:'15px',fontWeight:'700',color:'#f1f5f9',marginBottom:'2px',display:'flex',alignItems:'center',gap:'7px'}},
+    span({style:{color:'#4f7ef7',fontSize:'16px'}},'✦'), 'Check Your Brands',
+  ));
+  checkCard.appendChild(div({style:{fontSize:'12px',color:'#4a5568',marginBottom:'14px'}},
+    'Paste brands below — one per line. We\'ll check against every other intern\'s list instantly.',
+  ));
+
+  const ta = txt({
+    placeholder:'Nike\nYeti\nLMNT\nLiquid IV\nHydrant\nPoppi',
+    style:{...S.textarea,minHeight:'130px',marginBottom:'10px'}
+  });
+  focusStyle(ta);
+
+  const checkBtn = btn({style:{...S.bPrimary},onClick: runCheck},'🔍  Check Brands');
+  hoverStyle(checkBtn,'#1e40af','#1d4ed8');
+
+  checkCard.append(ta, checkBtn);
+  content.appendChild(checkCard);
+
+  // ── RESULTS SECTION ──
+  const resultsWrap = div({style:{display:'none',flexDirection:'column',gap:'10px'}});
+  content.appendChild(resultsWrap);
+
+  // ── MY TAB PREVIEW ──
+  const tabPreview = div({style:{...S.card,display:'none'}});
+  content.appendChild(tabPreview);
+
+  page.appendChild(content);
+  mount(page);
+
+  refreshTabPreview();
+
+  function refreshTabPreview(){
+    const mine = window.DB.brands.filter(b=>b.owner===internName);
+    tabPreview.replaceChildren();
+    if(mine.length===0){ tabPreview.style.display='none'; return; }
+    tabPreview.style.display='block';
+    tabPreview.appendChild(div({style:{fontSize:'12px',fontWeight:'600',color:'#4a5568',marginBottom:'10px',display:'flex',alignItems:'center',gap:'6px'}},
+      span({style:{color:c}},'◉'), `Your Tab  ·  ${mine.length} brand${mine.length!==1?'s':''}`
+    ));
+    const chips = div({style:{display:'flex',flexWrap:'wrap',gap:'6px'}});
+    mine.forEach(b=>{
+      const chip = span({style:{fontSize:'12px',background:'#0a0f1a',border:'1px solid #1a2638',
+        borderRadius:'7px',padding:'4px 8px 4px 10px',color:'#94a3b8',display:'inline-flex',alignItems:'center',gap:'6px'}}, b.name);
+      const x = btn({style:{color:'#334155',fontSize:'13px',lineHeight:'1',padding:'0',background:'none',border:'none',cursor:'pointer'},
+        onClick(){
+          window.DB.brands = window.DB.brands.filter(br=>br!==b);
+          schedulePush();
+          toast(b.name+' removed from your tab','warn');
+          refreshTabPreview();
+        }
+      },'×');
+      x.addEventListener('mouseenter',()=>x.style.color='#ef4444');
+      x.addEventListener('mouseleave',()=>x.style.color='#334155');
+      chip.appendChild(x);
+      chips.appendChild(chip);
+    });
+    tabPreview.appendChild(chips);
+    updateCount();
+  }
+
+  function runCheck(){
+    const raw = ta.value.trim();
+    if(!raw){ toast('Paste some brand names first 👆','warn'); return; }
+    const names = raw.split('\n').map(s=>s.trim()).filter(Boolean);
+    if(!names.length){ toast('No brand names found','warn'); return; }
+
+    const result = checkBrands(names, internName);
+    renderResults(result);
+  }
+
+  function renderResults(result){
+    resultsWrap.replaceChildren();
+    resultsWrap.style.display='flex';
+
+    const total = result.conflict.length + result.mine.length + result.newBrand.length;
+
+    // header row
+    const hdr = div({style:{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'8px'}},
+      div({style:{fontSize:'13px',fontWeight:'600',color:'#64748b'}},'Results · '+total+' brand'+(total!==1?'s':'')+' checked'),
+    );
+
+    // copy button — added to header after results built
+    let copied = false;
+    const copyBtn = btn({
+      style:{...S.bDefault,fontSize:'11px',padding:'5px 11px'},
+      onClick(){
+        const lines = [];
+        if(result.conflict.length){
+          lines.push('❌ Already claimed — remove these:');
+          result.conflict.forEach(b=>lines.push(`  • ${b.name} → claimed by ${b.owner}`));
+          lines.push('');
+        }
+        const good = [...(result.newBrand.filter(n=>addedSet.has(n))), ...[]]; // added ones
+        // rebuild from current addedSet
+        const goodList = result.newBrand.filter(n=>addedSet.has(n));
+        if(goodList.length){ lines.push('✅ Added to your tab:'); goodList.forEach(n=>lines.push(`  • ${n}`)); lines.push(''); }
+        const stillNew = result.newBrand.filter(n=>!addedSet.has(n));
+        if(stillNew.length){ lines.push('🆕 New — not yet added:'); stillNew.forEach(n=>lines.push(`  • ${n}`)); lines.push(''); }
+        if(result.mine.length){ lines.push('📌 Already on your tab:'); result.mine.forEach(n=>lines.push(`  • ${n}`)); }
+        navigator.clipboard.writeText(lines.join('\n').trim()).then(()=>{
+          copyBtn.textContent='✓ Copied!'; copyBtn.style.color='#22c55e'; copyBtn.style.borderColor='#22c55e40';
+          setTimeout(()=>{ copyBtn.textContent='Copy Summary'; copyBtn.style.color='#64748b'; copyBtn.style.borderColor='#1e2d45'; },2500);
+        });
+      }
+    },'Copy Summary');
+    hdr.appendChild(copyBtn);
+    resultsWrap.appendChild(hdr);
+
+    const addedSet = new Set(); // track which new brands have been added this session
+
+    // ── CONFLICT SECTION ──
+    if(result.conflict.length){
+      const sec = buildSection('🔴','Already Claimed — You Cannot Add These',result.conflict.length,'#ef4444','#1a0505','#ef444425');
+      result.conflict.forEach(b=>{
+        const oc = color(b.owner);
+        sec.body.appendChild(buildRow({
+          icon:'✕', iconColor:'#ef4444',
+          label: b.name,
+          labelColor:'#fca5a5',
+          right: div({style:{display:'flex',alignItems:'center',gap:'6px'}},
+            div({style:{width:'18px',height:'18px',borderRadius:'50%',background:oc+'22',border:`1px solid ${oc}40`,
+              display:'flex',alignItems:'center',justifyContent:'center',fontSize:'9px',fontWeight:'800',color:oc}}, b.owner[0]),
+            span({style:{fontSize:'12px',color:'#ef4444',fontWeight:'600'}}, b.owner),
+          ),
+          bg:'#0d0303',border:'#7f1d1d30',
+        }));
+      });
+      sec.note(`Tell Nick — these ${result.conflict.length} brand${result.conflict.length!==1?'s are':' is'} already taken by another intern.`,'#7f1d1d');
+      resultsWrap.appendChild(sec.el);
+    }
+
+    // ── ALREADY YOURS SECTION ──
+    if(result.mine.length){
+      const sec = buildSection('📌','Already on Your Tab',result.mine.length,'#4f7ef7','#0a1530','#4f7ef725');
+      result.mine.forEach(name=>{
+        sec.body.appendChild(buildRow({icon:'◉',iconColor:'#4f7ef7',label:name,labelColor:'#bfdbfe',bg:'#080f25',border:'#1e3a8a30'}));
+      });
+      resultsWrap.appendChild(sec.el);
+    }
+
+    // ── NEW BRANDS SECTION ──
+    if(result.newBrand.length){
+      const pendingCount = ()=>result.newBrand.filter(n=>!addedSet.has(n)).length;
+
+      const secTitle = div({style:{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'8px',marginBottom:'10px'}});
+      const secLabel = div({style:{display:'flex',alignItems:'center',gap:'8px'}},
+        span({style:{fontSize:'18px',lineHeight:'1'}},'🆕'),
+        div({},
+          div({style:{fontSize:'13px',fontWeight:'700',color:'#f1f5f9'}},'New Brands — Add to Your Tab'),
+          div({style:{fontSize:'11px',color:'#4a5568',marginTop:'1px'}},'These don\'t exist in the database yet. Tap to claim them.'),
+        )
+      );
+      secTitle.appendChild(secLabel);
+
+      // "Add All" button
+      let addAllBtn = null;
+      if(result.newBrand.length>1){
+        addAllBtn = btn({
+          style:{...S.bSuccess,fontSize:'11px',padding:'5px 11px'},
+          onClick(){
+            let added=0;
+            result.newBrand.forEach(name=>{
+              if(addedSet.has(name)) return;
+              if(addBrand(name,internName)){ addedSet.add(name); added++; }
+            });
+            refreshRows();
+            refreshTabPreview();
+            if(added) toast(`✓ ${added} brand${added!==1?'s':''} added to your tab`);
+            addAllBtn&&(addAllBtn.style.display='none');
+          }
+        },'+ Add All');
+        secTitle.appendChild(addAllBtn);
+      }
+
+      const secWrap = div({style:{...S.card,background:'#0d0f18',border:'1px solid #252c3a',padding:'14px'}});
+      secWrap.appendChild(secTitle);
+      const rowsWrap = div({style:{display:'flex',flexDirection:'column',gap:'5px'}});
+      secWrap.appendChild(rowsWrap);
+
+      function refreshRows(){
+        rowsWrap.replaceChildren();
+        result.newBrand.forEach(name=>{
+          const isAdded = addedSet.has(name);
+          const row = div({style:{
+            display:'flex',alignItems:'center',gap:'10px',padding:'9px 12px',
+            background: isAdded?'#03080a':'#080a12',
+            border:`1px solid ${isAdded?'#16532d40':'#1e2535'}`,
+            borderRadius:'9px',transition:'all .2s'
+          }});
+          const icon = span({style:{fontSize:'14px',flexShrink:'0',color:isAdded?'#22c55e':'#334155'}}, isAdded?'✓':'○');
+          const lbl  = span({style:{flex:'1',fontSize:'13px',fontWeight:'500',color:isAdded?'#86efac':'#94a3b8'}}, name);
+
+          let rightEl;
+          if(isAdded){
+            rightEl = span({style:{fontSize:'11px',color:'#22c55e',background:'#22c55e15',padding:'3px 10px',borderRadius:'6px',fontWeight:'700'}},'Added ✓');
+          } else {
+            rightEl = btn({
+              style:{...S.bSuccess,padding:'5px 12px',fontSize:'12px'},
+              onClick(){
+                if(addBrand(name,internName)){
+                  addedSet.add(name);
+                  refreshRows();
+                  refreshTabPreview();
+                  toast(`✓ ${name} added to your tab`);
+                  if(addAllBtn && pendingCount()===0) addAllBtn.style.display='none';
+                } else {
+                  toast(`${name} was just claimed by someone else`,'err');
+                }
+              }
+            },'+ Add to My Tab');
+          }
+          row.append(icon, lbl, rightEl);
+          rowsWrap.appendChild(row);
+        });
+      }
+      refreshRows();
+      resultsWrap.appendChild(secWrap);
+    }
+
+    // ── ALL CLEAR ──
+    if(!result.conflict.length && !result.newBrand.length && result.mine.length){
+      resultsWrap.appendChild(div({style:{...S.card,textAlign:'center',padding:'24px',border:'1px solid #16532d40',background:'#051208'}},
+        div({style:{fontSize:'24px',marginBottom:'8px'}},'✅'),
+        div({style:{fontSize:'14px',fontWeight:'700',color:'#22c55e',marginBottom:'4px'}},'All clear!'),
+        div({style:{fontSize:'12px',color:'#4a5568'}},'All these brands are already on your tab.'),
+      ));
+    }
+
+    // ── SUMMARY BOX ──
+    const summaryLines = [];
+    if(result.conflict.length){ summaryLines.push('❌ Already claimed — remove these:'); result.conflict.forEach(b=>summaryLines.push(`  • ${b.name} → ${b.owner}`)); summaryLines.push(''); }
+    if(result.mine.length){ summaryLines.push('📌 Already on your tab:'); result.mine.forEach(n=>summaryLines.push(`  • ${n}`)); summaryLines.push(''); }
+    if(result.newBrand.length){ summaryLines.push('🆕 New brands (add above):'); result.newBrand.forEach(n=>summaryLines.push(`  • ${n}`)); }
+
+    const summaryBox = div({style:{...S.card}});
+    summaryBox.appendChild(div({style:{fontSize:'12px',fontWeight:'600',color:'#4a5568',marginBottom:'10px',display:'flex',alignItems:'center',gap:'6px'}},
+      span({style:{color:'#4f7ef7'},'textContent':'◈ '}), 'Summary to Copy'
+    ));
+    const summaryPre = h('pre',{style:{background:'#0a0f1a',border:'1px solid #1a2638',borderRadius:'9px',
+      padding:'12px',fontSize:'12px',lineHeight:'1.8',color:'#64748b',
+      fontFamily:'ui-monospace,monospace',whiteSpace:'pre-wrap',maxHeight:'180px',overflowY:'auto'}},
+      summaryLines.join('\n').trim()||'(run a check to see results)'
+    );
+
+    // update summary dynamically when brands are added
+    const origUpdate = refreshTabPreview;
+    // we'll just keep the static initial summary — copy button handles dynamic
+
+    summaryBox.appendChild(summaryPre);
+    resultsWrap.appendChild(summaryBox);
+
+    // scroll into view
+    setTimeout(()=>resultsWrap.scrollIntoView({behavior:'smooth',block:'start'}),80);
+  }
+
+  function buildSection(emoji, title, count, c, bg, border){
+    const el = div({style:{...S.card,background:bg,border:`1px solid ${border}`,padding:'14px'}});
+    const head = div({style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}},
+      span({style:{fontSize:'16px',lineHeight:'1'}},(emoji)),
+      div({},
+        div({style:{fontSize:'13px',fontWeight:'700',color:'#f1f5f9'}},(title)),
+        div({style:{fontSize:'11px',color:c,marginTop:'1px'}},count+' brand'+(count!==1?'s':'')),
+      )
+    );
+    el.appendChild(head);
+    const body = div({style:{display:'flex',flexDirection:'column',gap:'5px'}});
+    el.appendChild(body);
+    return {
+      el, body,
+      note(msg,col){ el.appendChild(div({style:{marginTop:'10px',fontSize:'12px',color:col,background:'#00000020',borderRadius:'7px',padding:'8px 10px'}},(msg))); }
+    };
+  }
+
+  function buildRow({icon,iconColor,label,labelColor,right,bg,border}){
+    const row = div({style:{display:'flex',alignItems:'center',gap:'10px',padding:'8px 12px',background:bg||'#080e1c',border:`1px solid ${border||'#1a2638'}`,borderRadius:'9px'}});
+    row.appendChild(span({style:{color:iconColor||'#334155',fontSize:'13px',flexShrink:'0',fontWeight:'700'}},icon||'·'));
+    row.appendChild(span({style:{flex:'1',fontSize:'13px',fontWeight:'500',color:labelColor||'#e2e8f0'}},label));
+    if(right) row.appendChild(right);
+    return row;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SCREEN 3: NICK VIEW  — pick an intern, check on their behalf
+// ════════════════════════════════════════════════════════════════
+function renderNickView(){
+  const page = div({style:{...S.page,overflowY:'auto',height:'100vh'}});
+
+  // topbar
+  const topbar = div({style:{background:'#0a0f1a',borderBottom:'1px solid #1a2638',
+    padding:'12px 16px',display:'flex',alignItems:'center',gap:'10px',position:'sticky',top:'0',zIndex:'10'}});
+  topbar.append(
+    div({style:{width:'32px',height:'32px',borderRadius:'50%',background:'#f59e0b20',border:'1.5px solid #f59e0b50',
+      display:'flex',alignItems:'center',justifyContent:'center',fontSize:'13px',fontWeight:'800',color:'#f59e0b'}},'N'),
+    div({style:{flex:'1'}},
+      div({style:{fontSize:'14px',fontWeight:'700',color:'#f1f5f9'}},'Nick'),
+      div({style:{fontSize:'11px',color:'#f59e0b'}}, '🛡 Admin'),
+    ),
+    div({style:{fontSize:'10px',background:'#4f7ef710',color:'#4f7ef7',padding:'3px 8px',borderRadius:'7px',fontWeight:'600'}},'⬡ OutreachOS'),
+    btn({style:{fontSize:'12px',color:'#4a5568',padding:'5px 10px',border:'1px solid #1a2638',borderRadius:'7px',display:'flex',alignItems:'center',gap:'5px'},onClick:renderNameSelect},'↩ Switch'),
+  );
+  page.appendChild(topbar);
+
+  const content = div({style:{padding:'16px 14px',display:'flex',flexDirection:'column',gap:'14px',maxWidth:'600px',margin:'0 auto'}});
+
+  // two tabs: Check | Database
+  const tabRow = div({style:{display:'flex',gap:'6px',marginBottom:'2px'}});
+  let activeTab = 'check';
+
+  const tabCheck = tabBtn('🔍  Check Brands','check');
+  const tabDB    = tabBtn('🗂  Full Database','db');
+  tabRow.append(tabCheck.el, tabDB.el);
+  content.appendChild(tabRow);
+
+  const checkPane = div({});
+  const dbPane    = div({style:{display:'none'}});
+  content.append(checkPane, dbPane);
+
+  function tabBtn(label, id){
+    const isActive=()=>activeTab===id;
+    const el = btn({
+      style:{padding:'8px 16px',borderRadius:'9px',fontSize:'13px',fontWeight:'600',
+        background:isActive()?'#4f7ef720':'transparent',
+        border:`1px solid ${isActive()?'#4f7ef740':'#1a2638'}`,
+        color:isActive()?'#4f7ef7':'#4a5568',cursor:'pointer',transition:'all .12s'},
+      onClick(){
+        activeTab=id;
+        [tabCheck,tabDB].forEach(t=>t.update());
+        checkPane.style.display = id==='check'?'block':'none';
+        dbPane.style.display    = id==='db'?'block':'none';
+        if(id==='db') renderDB();
+      }
+    },label);
+    return {el, update(){
+      const a=isActive();
+      el.style.background=a?'#4f7ef720':'transparent';
+      el.style.borderColor=a?'#4f7ef740':'#1a2638';
+      el.style.color=a?'#4f7ef7':'#4a5568';
+    }};
+  }
+
+  // ── CHECK PANE ──
+  // intern selector
+  const selLabel = div({style:{...S.label}}, 'Checking brands for');
+  const internPills = div({style:{display:'flex',gap:'6px',flexWrap:'wrap',marginBottom:'14px'}});
+  let selectedIntern = INTERNS[0];
+
+  INTERNS.forEach(name=>{
+    const c = color(name);
+    const count = ()=>window.DB.brands.filter(b=>b.owner===name).length;
+    const p = btn({
+      style:{padding:'5px 12px',borderRadius:'20px',fontSize:'12px',fontWeight:'600',
+        background:name===selectedIntern?c+'20':'#0a0f1a',
+        border:`1.5px solid ${name===selectedIntern?c+'70':'#1a2638'}`,
+        color:name===selectedIntern?c:'#4a5568',
+        display:'flex',alignItems:'center',gap:'5px',transition:'all .12s'},
+      onClick(){
+        selectedIntern=name;
+        internPills.querySelectorAll('button').forEach((b,i)=>{
+          const n=INTERNS[i]; const nc=color(n);
+          b.style.background = n===name?nc+'20':'#0a0f1a';
+          b.style.borderColor= n===name?nc+'70':'#1a2638';
+          b.style.color      = n===name?nc:'#4a5568';
+        });
+        resultsArea.replaceChildren();
+        resultsArea.style.display='none';
+      }
+    }, name,
+      span({style:{fontSize:'9px',background:'#1a2638',color:'#334155',padding:'0 5px',borderRadius:'10px',fontWeight:'700'}}, count()),
+    );
+    internPills.appendChild(p);
+  });
+
+  const checkCard2 = div({style:{...S.card,border:'1px solid #4f7ef725',marginBottom:'0'}});
+  checkCard2.append(selLabel, internPills);
+  checkCard2.appendChild(div({style:{...S.label}},'Brands to check'));
+
+  const ta2 = txt({placeholder:'Nike\nYeti\nLMNT\nLiquid IV',style:{...S.textarea,minHeight:'110px',marginBottom:'10px'}});
+  focusStyle(ta2);
+
+  const chkBtn2 = btn({style:{...S.bPrimary},onClick:runNickCheck},'🔍  Check for '+selectedIntern);
+  hoverStyle(chkBtn2,'#1e40af','#1d4ed8');
+  // update button label when intern changes
+  internPills.addEventListener('click',()=>{ chkBtn2.textContent=''; chkBtn2.append('🔍  Check for '+selectedIntern); });
+
+  checkCard2.append(ta2, chkBtn2);
+  checkPane.appendChild(checkCard2);
+
+  const resultsArea = div({style:{display:'none',flexDirection:'column',gap:'10px',marginTop:'14px'}});
+  checkPane.appendChild(resultsArea);
+
+  function runNickCheck(){
+    const raw = ta2.value.trim();
+    if(!raw){ toast('Paste brand names first','warn'); return; }
+    const names = raw.split('\n').map(s=>s.trim()).filter(Boolean);
+    if(!names.length) return;
+    const result = checkBrands(names, selectedIntern);
+    renderNickResults(result, selectedIntern, resultsArea);
+    renderDB(); // refresh db view if open
+  }
+
+  // ── DB PANE ──
+  function renderDB(){
+    dbPane.replaceChildren();
+    window._onDBUpdate = ()=>renderDB();
+
+    // PAT sync banner
+    const pat=getPAT();
+    const patBanner=div({style:{background:'#0a0f1a',border:'1px solid '+(pat?'#22c55e30':'#f59e0b40'),borderRadius:'12px',padding:'10px 14px',marginBottom:'12px',display:'flex',alignItems:'center',gap:'10px',flexWrap:'wrap'}});
+    patBanner.appendChild(div({style:{flex:'1'}},
+      div({style:{fontSize:'12px',fontWeight:'700',color:pat?'#22c55e':'#f59e0b'}},(pat?'Auto-sync ON':'Auto-sync OFF')),
+      div({style:{fontSize:'11px',color:'#4a5568',marginTop:'1px'}},(pat?'Changes auto-save to GitHub for all devices':'Add a GitHub token to sync across all devices')),
+    ));
+    patBanner.appendChild(btn({style:{fontSize:'11px',padding:'5px 12px',background:pat?'#052e16':'#1c1000',border:'1px solid '+(pat?'#22c55e40':'#f59e0b40'),color:pat?'#22c55e':'#f59e0b',borderRadius:'8px',fontWeight:'600'},
+      onClick(){
+        const t=prompt(pat?'Update GitHub PAT (leave blank to remove):':'Paste GitHub PAT (needs repo write access):','');
+        if(t===null) return;
+        setPAT(t);
+        toast(t.trim()?'Token saved — sync enabled':'Token removed','ok');
+        renderDB();
+      }
+    },(pat?'Update':'+ Add Token')));
+    dbPane.appendChild(patBanner);
+
+    // stats row
+    const stats = div({style:{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:'8px',marginBottom:'12px'}});
+    [
+      {l:'Total Brands', v:window.DB.brands.length, c:'#4f7ef7'},
+      {l:'Interns Active', v:new Set(window.DB.brands.map(b=>b.owner)).size, c:'#a855f7'},
+      {l:'Conflicts Blocked', v:0, c:'#ef4444'},
+    ].forEach(s=>{
+      stats.appendChild(div({style:{background:'#0d1420',border:'1px solid #1a2638',borderRadius:'10px',padding:'10px 12px'}},
+        div({style:{fontSize:'20px',fontWeight:'800',color:s.c}},(s.v).toString()),
+        div({style:{fontSize:'10px',color:'#4a5568',marginTop:'2px'}},(s.l)),
+      ));
+    });
+    dbPane.appendChild(stats);
+
+    // per-intern breakdown
+    if(window.DB.brands.length===0){
+      dbPane.appendChild(div({style:{...S.card,textAlign:'center',padding:'40px',color:'#1e2d45'}},
+        div({style:{fontSize:'32px',marginBottom:'8px'}},'📭'),
+        div({style:{fontSize:'13px',color:'#334155'}},'No brands in the database yet'),
+      ));
+      return;
+    }
+
+    INTERNS.forEach(name=>{
+      const mine = window.DB.brands.filter(b=>b.owner===name);
+      if(!mine.length) return;
+      const c = color(name);
+      const sec = div({style:{...S.card,marginBottom:'8px'}});
+      const clrBtn=btn({style:{fontSize:'11px',padding:'4px 10px',background:'#1a0505',border:'1px solid #ef444430',color:'#ef4444',borderRadius:'7px',fontWeight:'600'},onClick(){ if(!confirm('Clear '+name+"'s tab?")) return; window.DB.brands=window.DB.brands.filter(b=>b.owner!==name); schedulePush(); toast(name+"'s tab cleared",'warn'); renderDB(); }},'Clear Tab');
+      sec.appendChild(div({style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'10px'}},
+        div({style:{width:'28px',height:'28px',borderRadius:'50%',background:c+'20',border:`1.5px solid ${c}40`,
+          display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:'800',color:c}},name[0]),
+        div({style:{flex:'1'}},
+          div({style:{fontSize:'13px',fontWeight:'700',color:'#f1f5f9'}},name),
+          div({style:{fontSize:'11px',color:'#4a5568'}},mine.length+' brand'+(mine.length!==1?'s':'')),
+        ),
+        clrBtn,
+      ));
+      const chips = div({style:{display:'flex',flexWrap:'wrap',gap:'5px'}});
+      mine.forEach(b=>{
+        const chip = span({style:{fontSize:'12px',background:'#0a0f1a',border:'1px solid #1a2638',
+          borderRadius:'7px',padding:'4px 10px',color:'#94a3b8',display:'inline-flex',alignItems:'center',gap:'6px'}},
+          b.name,
+        );
+        // delete button for nick
+        const del = btn({style:{color:'#334155',fontSize:'14px',lineHeight:'1',padding:'0 0 0 2px'},
+          onClick(){
+            window.DB.brands = window.DB.brands.filter(x=>x!==b);
+            schedulePush();
+            toast(b.name+' removed','warn');
+            renderDB();
+          }
+        },'×');
+        chip.appendChild(del);
+        chips.appendChild(chip);
+      });
+      sec.appendChild(chips);
+      dbPane.appendChild(sec);
+    });
+  }
+
+  page.appendChild(content);
+  mount(page);
+}
+
+// shared result renderer for Nick's check pane
+function renderNickResults(result, internName, container){
+  container.replaceChildren();
+  container.style.display='flex';
+
+  const total = result.conflict.length + result.mine.length + result.newBrand.length;
+  const c = color(internName);
+  const addedSet = new Set();
+
+  container.appendChild(div({style:{display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:'8px'}},
+    div({style:{display:'flex',alignItems:'center',gap:'8px'}},
+      div({style:{width:'26px',height:'26px',borderRadius:'50%',background:c+'20',border:`1.5px solid ${c}40`,
+        display:'flex',alignItems:'center',justifyContent:'center',fontSize:'11px',fontWeight:'800',color:c}},internName[0]),
+      div({style:{fontSize:'13px',fontWeight:'600',color:'#64748b'}},'Results for '+internName+' · '+total+' brand'+(total!==1?'s':'')+' checked'),
+    ),
+    btn({
+      style:{fontSize:'11px',padding:'5px 11px',background:'#111827',border:'1px solid #1e2d45',color:'#64748b',borderRadius:'8px',cursor:'pointer',display:'flex',alignItems:'center',gap:'5px'},
+      onClick(e){
+        const lines=[];
+        if(result.conflict.length){lines.push('❌ Already claimed — remove these:');result.conflict.forEach(b=>lines.push(`  • ${b.name} → ${b.owner}`));lines.push('');}
+        const addedList=result.newBrand.filter(n=>addedSet.has(n));
+        if(addedList.length){lines.push('✅ Added to '+internName+"'s tab:");addedList.forEach(n=>lines.push(`  • ${n}`));lines.push('');}
+        const stillNew=result.newBrand.filter(n=>!addedSet.has(n));
+        if(stillNew.length){lines.push('🆕 New — not yet added:');stillNew.forEach(n=>lines.push(`  • ${n}`));lines.push('');}
+        if(result.mine.length){lines.push('📌 Already on '+internName+"'s tab:");result.mine.forEach(n=>lines.push(`  • ${n}`));}
+        navigator.clipboard.writeText(lines.join('\n').trim()).then(()=>{
+          const b=e.currentTarget; b.textContent='✓ Copied!'; b.style.color='#22c55e';
+          setTimeout(()=>{b.textContent='Copy'; b.style.color='#64748b';},2500);
+        });
+      }
+    },'Copy'),
+  ));
+
+  // conflicts
+  if(result.conflict.length){
+    const sec=div({style:{background:'#1a0505',border:'1px solid #ef444420',borderRadius:'12px',padding:'12px 14px'}});
+    sec.appendChild(div({style:{fontSize:'12px',fontWeight:'700',color:'#ef4444',marginBottom:'8px'}},'🔴 Already Claimed ('+result.conflict.length+')'));
+    result.conflict.forEach(b=>{
+      const oc=color(b.owner);
+      sec.appendChild(div({style:{display:'flex',alignItems:'center',gap:'8px',padding:'7px 10px',background:'#0d0303',border:'1px solid #7f1d1d30',borderRadius:'8px',marginBottom:'4px'}},
+        span({style:{color:'#ef4444',fontSize:'13px'}}, '✕'),
+        span({style:{flex:'1',fontSize:'13px',fontWeight:'500',color:'#fca5a5'}},b.name),
+        div({style:{display:'flex',alignItems:'center',gap:'5px'}},
+          div({style:{width:'16px',height:'16px',borderRadius:'50%',background:oc+'22',border:`1px solid ${oc}40`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:'8px',fontWeight:'800',color:oc}},b.owner[0]),
+          span({style:{fontSize:'11px',color:'#ef4444',fontWeight:'600'}},b.owner),
+        ),
+      ));
+    });
+    container.appendChild(sec);
+  }
+
+  // already theirs
+  if(result.mine.length){
+    const sec=div({style:{background:'#0a1530',border:'1px solid #4f7ef720',borderRadius:'12px',padding:'12px 14px'}});
+    sec.appendChild(div({style:{fontSize:'12px',fontWeight:'700',color:'#4f7ef7',marginBottom:'8px'}},'📌 Already on '+internName+"'s Tab ("+result.mine.length+')'));
+    result.mine.forEach(name=>{
+      sec.appendChild(div({style:{display:'flex',alignItems:'center',gap:'8px',padding:'7px 10px',background:'#080f25',border:'1px solid #1e3a8a30',borderRadius:'8px',marginBottom:'4px'}},
+        span({style:{color:'#4f7ef7',fontSize:'13px'}},'◉'),
+        span({style:{flex:'1',fontSize:'13px',fontWeight:'500',color:'#bfdbfe'}},name),
+      ));
+    });
+    container.appendChild(sec);
+  }
+
+  // new brands
+  if(result.newBrand.length){
+    const sec=div({style:{background:'#0d0f18',border:'1px solid #252c3a',borderRadius:'12px',padding:'12px 14px'}});
+    const secHdr=div({style:{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'8px',flexWrap:'wrap',gap:'6px'}});
+    secHdr.appendChild(div({style:{fontSize:'12px',fontWeight:'700',color:'#94a3b8'}},'🆕 New Brands ('+result.newBrand.length+')'));
+
+    let addAllBtn2=null;
+    if(result.newBrand.length>1){
+      addAllBtn2=btn({
+        style:{...{background:'#14532d',border:'1px solid #22c55e40',color:'#22c55e',borderRadius:'8px',padding:'5px 11px',fontSize:'11px',fontWeight:'600',cursor:'pointer',display:'flex',alignItems:'center',gap:'5px'}},
+        onClick(){
+          let ct=0;
+          result.newBrand.forEach(name=>{if(!addedSet.has(name)&&addBrand(name,internName)){addedSet.add(name);ct++;}});
+          refreshNewRows();
+          if(ct)toast(`✓ ${ct} brand${ct!==1?'s':''} added to ${internName}'s tab`);
+          addAllBtn2.style.display='none';
+        }
+      },'+ Add All to '+internName);
+      secHdr.appendChild(addAllBtn2);
+    }
+    sec.appendChild(secHdr);
+    const rowsW=div({style:{display:'flex',flexDirection:'column',gap:'5px'}});
+    sec.appendChild(rowsW);
+
+    function refreshNewRows(){
+      rowsW.replaceChildren();
+      result.newBrand.forEach(name=>{
+        const isAdded=addedSet.has(name);
+        const row=div({style:{display:'flex',alignItems:'center',gap:'8px',padding:'8px 12px',
+          background:isAdded?'#03080a':'#080a12',border:`1px solid ${isAdded?'#16532d40':'#1e2535'}`,borderRadius:'9px',transition:'all .2s'}});
+        row.append(
+          span({style:{color:isAdded?'#22c55e':'#334155',fontSize:'13px',flexShrink:'0'}},isAdded?'✓':'○'),
+          span({style:{flex:'1',fontSize:'13px',fontWeight:'500',color:isAdded?'#86efac':'#94a3b8'}},name),
+          isAdded
+            ? span({style:{fontSize:'11px',color:'#22c55e',background:'#22c55e15',padding:'3px 10px',borderRadius:'6px',fontWeight:'700'}},'Added ✓')
+            : btn({
+                style:{background:'#14532d',border:'1px solid #22c55e40',color:'#22c55e',borderRadius:'8px',padding:'5px 12px',fontSize:'12px',fontWeight:'600',cursor:'pointer',display:'flex',alignItems:'center',gap:'5px'},
+                onClick(){
+                  if(addBrand(name,internName)){addedSet.add(name);refreshNewRows();toast(`✓ ${name} added to ${internName}'s tab`);}
+                  else toast(`${name} was just claimed`,'err');
+                  if(addAllBtn2&&result.newBrand.every(n=>addedSet.has(n)))addAllBtn2.style.display='none';
+                }
+              },'+ Add to '+internName),
+        );
+        rowsW.appendChild(row);
+      });
+    }
+    refreshNewRows();
+    container.appendChild(sec);
+  }
+
+  setTimeout(()=>container.scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
+
+// ════════════════════════════════════════════════════════════════
+//  BOOT
+// ════════════════════════════════════════════════════════════════
+// auto-pull when user returns to tab
+document.addEventListener('visibilitychange', ()=>{
+  if(!document.hidden) pullDB().then(u=>{ if(u&&window._onDBUpdate) window._onDBUpdate(); }).catch(()=>{});
+});
+
+renderNameSelect();
+</script>
+</body>
+</html>
