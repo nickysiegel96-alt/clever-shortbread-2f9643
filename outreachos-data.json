@@ -1,1 +1,15 @@
-{"brands":[]}
+{
+  "brands": [
+    {
+      "name": "Nike",
+      "owner": "Will",
+      "ts": 1780622653137
+    },
+    {
+      "name": "Mission Belt",
+      "owner": "Will",
+      "ts": 1780622653137
+    }
+  ],
+  "pendingApprovals": []
+}
