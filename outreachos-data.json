@@ -4466,6 +4466,11 @@
       "ts": 1780612559438
     },
     {
+      "name": "Company Name",
+      "owner": "Will",
+      "ts": 1780612583242
+    },
+    {
       "name": "1587 Sneakers",
       "owner": "Will",
       "ts": 1780612583243
@@ -22721,5 +22726,19 @@
       "ts": 1780626127594
     }
   ],
-  "pendingApprovals": []
+  "pendingApprovals": [
+    {
+      "name": "Hint Athlete",
+      "requestedBy": "Will",
+      "matchedBrands": [
+        "Infinite Athlete",
+        "Klean Athlete",
+        "Athlete Fresh",
+        "Wilderness Athlete",
+        "MOGL Athlete Brand Mgmt."
+      ],
+      "ts": 1780626289973,
+      "id": "1780626289973_pd7z6roaxb"
+    }
+  ]
 }
