@@ -22724,21 +22724,12 @@
       "name": "Bass Pro",
       "owner": "Will",
       "ts": 1780626127594
-    }
-  ],
-  "pendingApprovals": [
+    },
     {
       "name": "Hint Athlete",
-      "requestedBy": "Will",
-      "matchedBrands": [
-        "Infinite Athlete",
-        "Klean Athlete",
-        "Athlete Fresh",
-        "Wilderness Athlete",
-        "MOGL Athlete Brand Mgmt."
-      ],
-      "ts": 1780626289973,
-      "id": "1780626289973_pd7z6roaxb"
+      "owner": "Will",
+      "ts": 1780626303628
     }
-  ]
+  ],
+  "pendingApprovals": []
 }
