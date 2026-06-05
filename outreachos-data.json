@@ -22726,5 +22726,19 @@
       "ts": 1780626127594
     }
   ],
-  "pendingApprovals": []
+  "pendingApprovals": [
+    {
+      "name": "Hint Athlete",
+      "requestedBy": "Will",
+      "matchedBrands": [
+        "Infinite Athlete",
+        "Klean Athlete",
+        "Athlete Fresh",
+        "Wilderness Athlete",
+        "MOGL Athlete Brand Mgmt."
+      ],
+      "ts": 1780626334658,
+      "id": "1780626334658_5v3oighlkli"
+    }
+  ]
 }
