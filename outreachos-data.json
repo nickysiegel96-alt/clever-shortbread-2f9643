@@ -25154,6 +25154,11 @@
       "name": "Soiree Coffee Bar",
       "owner": "Serena",
       "ts": 1781713833647
+    },
+    {
+      "name": "The Dock Bookshop",
+      "owner": "Serena",
+      "ts": 1781713906206
     }
   ],
   "pendingApprovals": [],
