@@ -25604,6 +25604,11 @@
       "name": "Academy Sports",
       "owner": "Serena",
       "ts": 1781896218325
+    },
+    {
+      "name": "Crown Bakery",
+      "owner": "Izzy",
+      "ts": 1781896856060
     }
   ],
   "pendingApprovals": [],
