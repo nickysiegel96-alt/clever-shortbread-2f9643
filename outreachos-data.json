@@ -27134,6 +27134,11 @@
       "name": "5 Points Pizza",
       "owner": "Julian",
       "ts": 1782250089174
+    },
+    {
+      "name": "Diceys Tavern",
+      "owner": "Julian",
+      "ts": 1782250091706
     }
   ],
   "pendingApprovals": [],
