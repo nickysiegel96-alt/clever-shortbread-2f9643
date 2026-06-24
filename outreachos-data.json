@@ -27806,11 +27806,6 @@
       "ts": 1782326134829
     },
     {
-      "name": "Pizaa Perfect",
-      "owner": "Julian",
-      "ts": 1782250096711
-    },
-    {
       "name": "Pluckers Wing Bar",
       "owner": "Serena",
       "ts": 1782325882163
@@ -27851,9 +27846,289 @@
       "ts": 1782326452560
     },
     {
-      "name": "Brazyn Life Morph Roller",
-      "owner": "Spyro",
-      "ts": 1782326487885
+      "name": "ASUS ROG",
+      "owner": "Drew",
+      "ts": 1782326477846
+    },
+    {
+      "name": "Gigabyte AORUS",
+      "owner": "Drew",
+      "ts": 1782326477853
+    },
+    {
+      "name": "Sapphire Technology",
+      "owner": "Drew",
+      "ts": 1782326477859
+    },
+    {
+      "name": "Zotac",
+      "owner": "Drew",
+      "ts": 1782326477863
+    },
+    {
+      "name": "PowerColor",
+      "owner": "Drew",
+      "ts": 1782326477867
+    },
+    {
+      "name": "Thermaltake",
+      "owner": "Drew",
+      "ts": 1782326477874
+    },
+    {
+      "name": "Lian Li",
+      "owner": "Drew",
+      "ts": 1782326477878
+    },
+    {
+      "name": "Phanteks",
+      "owner": "Drew",
+      "ts": 1782326477881
+    },
+    {
+      "name": "SilverStone",
+      "owner": "Drew",
+      "ts": 1782326477885
+    },
+    {
+      "name": "Seasonic",
+      "owner": "Drew",
+      "ts": 1782326477888
+    },
+    {
+      "name": "Kingston Fury",
+      "owner": "Drew",
+      "ts": 1782326477892
+    },
+    {
+      "name": "G.Skill",
+      "owner": "Drew",
+      "ts": 1782326477895
+    },
+    {
+      "name": "Seagate FireCuda",
+      "owner": "Drew",
+      "ts": 1782326477898
+    },
+    {
+      "name": "Samsung 990 Pro",
+      "owner": "Drew",
+      "ts": 1782326477901
+    },
+    {
+      "name": "ADATA XPG",
+      "owner": "Drew",
+      "ts": 1782326477903
+    },
+    {
+      "name": "SteelSeries Apex",
+      "owner": "Drew",
+      "ts": 1782326477906
+    },
+    {
+      "name": "Wooting",
+      "owner": "Drew",
+      "ts": 1782326477909
+    },
+    {
+      "name": "Ducky Channel",
+      "owner": "Drew",
+      "ts": 1782326477912
+    },
+    {
+      "name": "Drop (Massdrop)",
+      "owner": "Drew",
+      "ts": 1782326477915
+    },
+    {
+      "name": "Varmilo",
+      "owner": "Drew",
+      "ts": 1782326477917
+    },
+    {
+      "name": "Akko",
+      "owner": "Drew",
+      "ts": 1782326477920
+    },
+    {
+      "name": "HHKB",
+      "owner": "Drew",
+      "ts": 1782326477923
+    },
+    {
+      "name": "Endgame Gear",
+      "owner": "Drew",
+      "ts": 1782326477926
+    },
+    {
+      "name": "Finalmouse",
+      "owner": "Drew",
+      "ts": 1782326477928
+    },
+    {
+      "name": "Vaxee",
+      "owner": "Drew",
+      "ts": 1782326477931
+    },
+    {
+      "name": "Lamzu",
+      "owner": "Drew",
+      "ts": 1782326477934
+    },
+    {
+      "name": "Xtrfy",
+      "owner": "Drew",
+      "ts": 1782326477936
+    },
+    {
+      "name": "Roccat",
+      "owner": "Drew",
+      "ts": 1782326477940
+    },
+    {
+      "name": "Mad Catz",
+      "owner": "Drew",
+      "ts": 1782326477942
+    },
+    {
+      "name": "Cherry MX",
+      "owner": "Drew",
+      "ts": 1782326477945
+    },
+    {
+      "name": "Elgato (Already On Father'S Day List, Skip If Relevant)",
+      "owner": "Drew",
+      "ts": 1782326477948
+    },
+    {
+      "name": "AVerMedia",
+      "owner": "Drew",
+      "ts": 1782326477951
+    },
+    {
+      "name": "Blue Microphones (Yeti)",
+      "owner": "Drew",
+      "ts": 1782326477953
+    },
+    {
+      "name": "Sony Inzone",
+      "owner": "Drew",
+      "ts": 1782326477957
+    },
+    {
+      "name": "DXRacer",
+      "owner": "Drew",
+      "ts": 1782326477959
+    },
+    {
+      "name": "AKRacing",
+      "owner": "Drew",
+      "ts": 1782326477962
+    },
+    {
+      "name": "Vertagear",
+      "owner": "Drew",
+      "ts": 1782326477965
+    },
+    {
+      "name": "Autonomous",
+      "owner": "Drew",
+      "ts": 1782326477968
+    },
+    {
+      "name": "Anda Seat",
+      "owner": "Drew",
+      "ts": 1782326477970
+    },
+    {
+      "name": "Arozzi",
+      "owner": "Drew",
+      "ts": 1782326477973
+    },
+    {
+      "name": "GTRacing",
+      "owner": "Drew",
+      "ts": 1782326477976
+    },
+    {
+      "name": "ApexDesk",
+      "owner": "Drew",
+      "ts": 1782326477979
+    },
+    {
+      "name": "Vari Desk",
+      "owner": "Drew",
+      "ts": 1782326477981
+    },
+    {
+      "name": "Eureka Ergonomic",
+      "owner": "Drew",
+      "ts": 1782326477984
+    },
+    {
+      "name": "Acer Nitro",
+      "owner": "Drew",
+      "ts": 1782326477987
+    },
+    {
+      "name": "HP Omen",
+      "owner": "Drew",
+      "ts": 1782326477990
+    },
+    {
+      "name": "LG UltraGear",
+      "owner": "Drew",
+      "ts": 1782326477993
+    },
+    {
+      "name": "Alphacool",
+      "owner": "Drew",
+      "ts": 1782326477996
+    },
+    {
+      "name": "EKWB",
+      "owner": "Drew",
+      "ts": 1782326477998
+    },
+    {
+      "name": "Noctua",
+      "owner": "Drew",
+      "ts": 1782326478004
+    },
+    {
+      "name": "DeepCool",
+      "owner": "Drew",
+      "ts": 1782326478006
+    },
+    {
+      "name": "ID-Cooling",
+      "owner": "Drew",
+      "ts": 1782326478008
+    },
+    {
+      "name": "Montech",
+      "owner": "Drew",
+      "ts": 1782326478011
+    },
+    {
+      "name": "Nacon",
+      "owner": "Drew",
+      "ts": 1782326478014
+    },
+    {
+      "name": "Hori",
+      "owner": "Drew",
+      "ts": 1782326478017
+    },
+    {
+      "name": "PowerA",
+      "owner": "Drew",
+      "ts": 1782326478019
+    },
+    {
+      "name": "Snakebyte",
+      "owner": "Drew",
+      "ts": 1782326478022
     }
   ],
   "pendingApprovals": [],
