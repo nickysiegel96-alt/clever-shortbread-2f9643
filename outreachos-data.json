@@ -27541,11 +27541,6 @@
       "ts": 1782324086460
     },
     {
-      "name": "Pizaa Perfect",
-      "owner": "Julian",
-      "ts": 1782250096711
-    },
-    {
       "name": "Camp Bow Wow Dallas High Five",
       "owner": "Serena",
       "ts": 1782323885188
@@ -27641,11 +27636,6 @@
       "ts": 1782325844031
     },
     {
-      "name": "Pluckers Wing Bar",
-      "owner": "Serena",
-      "ts": 1782325882163
-    },
-    {
       "name": "Tennessee Pickle Co.",
       "owner": "Izzy",
       "ts": 1782324092394
@@ -27664,6 +27654,11 @@
       "name": "Tennessee Jerky Co.",
       "owner": "Izzy",
       "ts": 1782324207823
+    },
+    {
+      "name": "MSI Gaming",
+      "owner": "Drew",
+      "ts": 1782325898951
     }
   ],
   "pendingApprovals": [],
