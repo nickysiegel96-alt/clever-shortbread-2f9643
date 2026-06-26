@@ -28594,6 +28594,11 @@
       "name": "Baltimore Coffee & Tea Co.",
       "owner": "Harrison",
       "ts": 1782489095158
+    },
+    {
+      "name": "The Spice & Tea Exchange",
+      "owner": "Harrison",
+      "ts": 1782489097116
     }
   ],
   "pendingApprovals": [],
