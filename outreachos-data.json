@@ -29421,6 +29421,11 @@
       "ts": 1783090213979
     },
     {
+      "name": "Theragun Mini",
+      "owner": "Harrison",
+      "ts": 1783090262516
+    },
+    {
       "name": "PowerDot",
       "owner": "Harrison",
       "ts": 1783090262528
@@ -29464,6 +29469,21 @@
       "name": "BOTE",
       "owner": "Harrison",
       "ts": 1783090262565
+    },
+    {
+      "name": "VTMNTS",
+      "owner": "Spyro",
+      "ts": 1783090204423
+    },
+    {
+      "name": "Wrangler Authentics",
+      "owner": "Spyro",
+      "ts": 1783090238898
+    },
+    {
+      "name": "Freemans Sporting Club",
+      "owner": "Spyro",
+      "ts": 1783090375885
     }
   ],
   "pendingApprovals": [],
