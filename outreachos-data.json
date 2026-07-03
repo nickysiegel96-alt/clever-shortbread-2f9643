@@ -29421,11 +29421,6 @@
       "ts": 1783090213979
     },
     {
-      "name": "Theragun Mini",
-      "owner": "Harrison",
-      "ts": 1783090262516
-    },
-    {
       "name": "PowerDot",
       "owner": "Harrison",
       "ts": 1783090262528
@@ -29489,6 +29484,11 @@
       "name": "Lucky Brand Jeans",
       "owner": "Spyro",
       "ts": 1783090546684
+    },
+    {
+      "name": "Daily Crunch",
+      "owner": "Harrison",
+      "ts": 1783090935830
     }
   ],
   "pendingApprovals": [],
