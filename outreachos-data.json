@@ -31234,6 +31234,11 @@
       "name": "Sperry'S Restaurant",
       "owner": "Spyro",
       "ts": 1783962388762
+    },
+    {
+      "name": "Culinary Dropout",
+      "owner": "Spyro",
+      "ts": 1783962470458
     }
   ],
   "pendingApprovals": [],
