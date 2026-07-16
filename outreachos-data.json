@@ -32011,11 +32011,6 @@
       "ts": 1784134358951
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Varsity Brands",
       "owner": "Spyro",
       "ts": 1784221013759
@@ -32096,19 +32091,94 @@
       "ts": 1784237690290
     },
     {
-      "name": "Tavis Stocks",
-      "owner": "Spyro",
-      "ts": 1784237833668
+      "name": "Trek (E-Bike Line)",
+      "owner": "Harrison",
+      "ts": 1784237859905
     },
     {
-      "name": "Tavisstock Restaurant",
-      "owner": "Spyro",
-      "ts": 1784238007683
+      "name": "Marmot",
+      "owner": "Harrison",
+      "ts": 1784237859916
     },
     {
-      "name": "Whitts Barbeque",
-      "owner": "Spyro",
-      "ts": 1784238051439
+      "name": "Sea To Summit",
+      "owner": "Harrison",
+      "ts": 1784237859921
+    },
+    {
+      "name": "8BitDo",
+      "owner": "Harrison",
+      "ts": 1784237859924
+    },
+    {
+      "name": "GameSir",
+      "owner": "Harrison",
+      "ts": 1784237859929
+    },
+    {
+      "name": "Scuf Gaming",
+      "owner": "Harrison",
+      "ts": 1784237862761
+    },
+    {
+      "name": "Biostrap",
+      "owner": "Ryan",
+      "ts": 1784238018031
+    },
+    {
+      "name": "IReliev",
+      "owner": "Ryan",
+      "ts": 1784238018037
+    },
+    {
+      "name": "LumosTech",
+      "owner": "Ryan",
+      "ts": 1784238018041
+    },
+    {
+      "name": "Mendi",
+      "owner": "Ryan",
+      "ts": 1784238018045
+    },
+    {
+      "name": "Naipo",
+      "owner": "Ryan",
+      "ts": 1784238018050
+    },
+    {
+      "name": "Neurovalens",
+      "owner": "Ryan",
+      "ts": 1784238018054
+    },
+    {
+      "name": "Noisli",
+      "owner": "Ryan",
+      "ts": 1784238018058
+    },
+    {
+      "name": "Rezzimax",
+      "owner": "Ryan",
+      "ts": 1784238018062
+    },
+    {
+      "name": "REM-Fit",
+      "owner": "Ryan",
+      "ts": 1784238018066
+    },
+    {
+      "name": "SHEEX",
+      "owner": "Ryan",
+      "ts": 1784238018070
+    },
+    {
+      "name": "Hooga Health",
+      "owner": "Ryan",
+      "ts": 1784238044003
+    },
+    {
+      "name": "Dream Water",
+      "owner": "Ryan",
+      "ts": 1784238056167
     }
   ],
   "pendingApprovals": [],
