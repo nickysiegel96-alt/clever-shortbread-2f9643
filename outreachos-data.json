@@ -32621,11 +32621,6 @@
       "ts": 1784557376948
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Rowdy Energy",
       "owner": "Spyro",
       "ts": 1784559823076
@@ -33059,6 +33054,11 @@
       "name": "TrainingPeaks",
       "owner": "Spyro",
       "ts": 1784657122285
+    },
+    {
+      "name": "Rambo Bikes",
+      "owner": "Drew",
+      "ts": 1784734764535
     }
   ],
   "pendingApprovals": [],
