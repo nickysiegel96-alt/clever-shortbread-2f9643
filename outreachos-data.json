@@ -33316,11 +33316,6 @@
       "ts": 1784734824284
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Represent Clothing",
       "owner": "Spyro",
       "ts": 1784746937890
@@ -33444,6 +33439,16 @@
       "name": "Nudie Jeans",
       "owner": "Spyro",
       "ts": 1784827685181
+    },
+    {
+      "name": "Dekoni Audio",
+      "owner": "Drew",
+      "ts": 1784830174476
+    },
+    {
+      "name": "Tectonic Audio Labs",
+      "owner": "Drew",
+      "ts": 1784830175546
     }
   ],
   "pendingApprovals": [],
