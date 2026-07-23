@@ -33564,9 +33564,12 @@
       "name": "Dot'S Homestyle Pretzels",
       "owner": "Ryan",
       "ts": 1784837109151
+    },
+    {
+      "name": "D'Andres Baker And Cafe",
+      "owner": "Spyro",
+      "ts": 1784133736513
     }
   ],
-  "pendingApprovals": [],
-  "_deletedKeys": {},
-  "_deletedPendingIds": {}
+  "pendingApprovals": []
 }
