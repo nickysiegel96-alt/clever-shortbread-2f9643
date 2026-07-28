@@ -34211,11 +34211,6 @@
       "ts": 1785252716548
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Publish Brand",
       "owner": "Spyro",
       "ts": 1785253581687
@@ -34324,6 +34319,21 @@
       "name": "WTAPS",
       "owner": "Spyro",
       "ts": 1785255540580
+    },
+    {
+      "name": "Pushpull",
+      "owner": "Spyro",
+      "ts": 1785255658000
+    },
+    {
+      "name": "Luca Faloni",
+      "owner": "Spyro",
+      "ts": 1785255658012
+    },
+    {
+      "name": "Neutrale",
+      "owner": "Spyro",
+      "ts": 1785255658027
     }
   ],
   "pendingApprovals": [],
