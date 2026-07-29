@@ -34336,11 +34336,6 @@
       "ts": 1785255658027
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Jupiter",
       "owner": "Olivia",
       "ts": 1785259887800
@@ -34489,6 +34484,31 @@
       "name": "RVCA",
       "owner": "Spyro",
       "ts": 1785346522288
+    },
+    {
+      "name": "Archies",
+      "owner": "Spyro",
+      "ts": 1785349126296
+    },
+    {
+      "name": "FitFlop",
+      "owner": "Spyro",
+      "ts": 1785349126311
+    },
+    {
+      "name": "Visvim",
+      "owner": "Spyro",
+      "ts": 1785349126315
+    },
+    {
+      "name": "Hummel",
+      "owner": "Spyro",
+      "ts": 1785349126319
+    },
+    {
+      "name": "Umbro",
+      "owner": "Spyro",
+      "ts": 1785349126323
     }
   ],
   "pendingApprovals": [],
