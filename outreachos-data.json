@@ -35061,11 +35061,6 @@
       "ts": 1785788450805
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Organic Mattresses Inc",
       "owner": "Spyro",
       "ts": 1785800316151
@@ -35189,6 +35184,11 @@
       "name": "Sunpan",
       "owner": "Spyro",
       "ts": 1785800351647
+    },
+    {
+      "name": "Canal Dover Furniture",
+      "owner": "Ryan",
+      "ts": 1785870655682
     }
   ],
   "pendingApprovals": [],
