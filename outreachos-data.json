@@ -35361,11 +35361,6 @@
       "ts": 1785940716227
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Lane Furniture",
       "owner": "Spyro",
       "ts": 1785946946131
@@ -35599,6 +35594,21 @@
       "name": "NovaSolo",
       "owner": "Ryan",
       "ts": 1785950878010
+    },
+    {
+      "name": "Duxiana",
+      "owner": "Drew",
+      "ts": 1785940718642
+    },
+    {
+      "name": "HäStens",
+      "owner": "Drew",
+      "ts": 1785940718647
+    },
+    {
+      "name": "PranaSleep",
+      "owner": "Drew",
+      "ts": 1785940718651
     }
   ],
   "pendingApprovals": [],
