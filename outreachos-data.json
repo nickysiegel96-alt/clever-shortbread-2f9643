@@ -35766,11 +35766,6 @@
       "ts": 1786098720247
     },
     {
-      "name": "D'Andres Baker And Cafe",
-      "owner": "Spyro",
-      "ts": 1784133736513
-    },
-    {
       "name": "Therapedic International",
       "owner": "Spyro",
       "ts": 1786123083512
@@ -35804,6 +35799,81 @@
       "name": "Comfort Revolution",
       "owner": "Spyro",
       "ts": 1786123263033
+    },
+    {
+      "name": "Continental Sleep (Comfort Bedding)",
+      "owner": "Drew",
+      "ts": 1786098722299
+    },
+    {
+      "name": "Monarch Rest",
+      "owner": "Drew",
+      "ts": 1786098723190
+    },
+    {
+      "name": "DutchCrafters",
+      "owner": "Drew",
+      "ts": 1786098723195
+    },
+    {
+      "name": "Innomax",
+      "owner": "Drew",
+      "ts": 1786098723200
+    },
+    {
+      "name": "SoundAsleep",
+      "owner": "Drew",
+      "ts": 1786098723207
+    },
+    {
+      "name": "Newton Baby",
+      "owner": "Drew",
+      "ts": 1786098723214
+    },
+    {
+      "name": "Raymour & Flanigan (Bellanest)",
+      "owner": "Drew",
+      "ts": 1786098723219
+    },
+    {
+      "name": "Berkeley Ergonomics",
+      "owner": "Drew",
+      "ts": 1786098723229
+    },
+    {
+      "name": "Delta Children",
+      "owner": "Drew",
+      "ts": 1786098723240
+    },
+    {
+      "name": "DaVinci (DaVinci Baby)",
+      "owner": "Drew",
+      "ts": 1786098723244
+    },
+    {
+      "name": "Milliard",
+      "owner": "Drew",
+      "ts": 1786098723248
+    },
+    {
+      "name": "Inofia",
+      "owner": "Drew",
+      "ts": 1786098723252
+    },
+    {
+      "name": "Mancini'S Sleepworld",
+      "owner": "Drew",
+      "ts": 1786098723265
+    },
+    {
+      "name": "Springwall",
+      "owner": "Drew",
+      "ts": 1786098723268
+    },
+    {
+      "name": "IDealBed",
+      "owner": "Drew",
+      "ts": 1786098723273
     }
   ],
   "pendingApprovals": [],
