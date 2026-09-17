@@ -37171,17 +37171,34 @@
       "ts": 1789677147976
     },
     {
-      "name": "Asics",
-      "owner": "Justin",
-      "ts": 1789677280688
+      "name": "Bandier",
+      "owner": "Max",
+      "ts": 1789677098592
     },
     {
-      "name": "Ziploc",
-      "owner": "Justin",
-      "ts": 1789677351531
+      "name": "Halfdays",
+      "owner": "Max",
+      "ts": 1789677281877
+    },
+    {
+      "name": "Nillium",
+      "owner": "Max",
+      "ts": 1789677330811
     }
   ],
-  "pendingApprovals": [],
+  "pendingApprovals": [
+    {
+      "name": "Phenom Elite",
+      "requestedBy": "Max",
+      "matchedBrands": [
+        "Elite Sweets",
+        "Elite Recovery Tech",
+        "Elite Saddle Pads"
+      ],
+      "ts": 1789677361688,
+      "id": "1789677361688_9r0idva6mc6"
+    }
+  ],
   "_deletedKeys": {},
   "_deletedPendingIds": {}
 }
