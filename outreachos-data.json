@@ -37396,6 +37396,17 @@
       ],
       "ts": 1789678093605,
       "id": "1789678093605_aw1rc25qmzo"
+    },
+    {
+      "name": "LIGHT Helmets",
+      "requestedBy": "Max",
+      "matchedBrands": [
+        "Valo Light",
+        "Midwest Red Light Therapy",
+        "Mito Red Light"
+      ],
+      "ts": 1789678157755,
+      "id": "1789678157755_ybp5hh4a6q8"
     }
   ],
   "_deletedKeys": {},
