@@ -37221,14 +37221,14 @@
       "ts": 1789677726293
     },
     {
-      "name": "Gamebreaker",
-      "owner": "Max",
-      "ts": 1789677773896
+      "name": "YoungLa",
+      "owner": "Dylan",
+      "ts": 1789677864875
     },
     {
-      "name": "BrainSentry",
-      "owner": "Max",
-      "ts": 1789677860464
+      "name": "JBL",
+      "owner": "Dylan",
+      "ts": 1789677936784
     }
   ],
   "pendingApprovals": [
@@ -37309,64 +37309,6 @@
       ],
       "ts": 1789677525355,
       "id": "1789677525355_ak8x6urketr"
-    },
-    {
-      "name": "Kistler Force Plates",
-      "requestedBy": "Max",
-      "matchedBrands": [
-        "Force Of Nature",
-        "Force USA"
-      ],
-      "ts": 1789677905107,
-      "id": "1789677905107_8xqj0jh9jm"
-    },
-    {
-      "name": "Shadowman Sports",
-      "requestedBy": "Max",
-      "matchedBrands": [
-        "Crank Sports",
-        "Mueller Sports Medicine",
-        "Daps Sports",
-        "Futera Sports Cards",
-        "Wicked Big Sports",
-        "Holabird Sports",
-        "Sports Express",
-        "Just For Sports",
-        "ProSlide Sports",
-        "Aquilo Sports",
-        "BPI Sports",
-        "Catapult Sports",
-        "Mantra Sports",
-        "Now Sports",
-        "VMI Sports",
-        "Kinetica Sports",
-        "Promera Sports",
-        "ONR - Advanced Sports Wellness",
-        "Muellers Sports Medicine",
-        "Sports Research",
-        "Leather Head Sports",
-        "RAVE Sports",
-        "Custom Sports Sleeves",
-        "Zoot Sports",
-        "Boathouse Sports",
-        "Sun Mountain Sports",
-        "Jones Sports Co.",
-        "Walk On'S Sports Bistreaux",
-        "JD Sports",
-        "Academy Sports",
-        "Pride Sports",
-        "Sports House",
-        "Nashville Chiropractic & Sports Therapy",
-        "Battle Sports Cold Compression",
-        "Roeckl Sports",
-        "Same Sports Gril",
-        "RP Sports",
-        "EAS Sports Nutrition",
-        "Jamie Pearson Sports Massage",
-        "Steel City Sports Massage"
-      ],
-      "ts": 1789677929173,
-      "id": "1789677929173_3nfe0uctigh"
     }
   ],
   "_deletedKeys": {},
