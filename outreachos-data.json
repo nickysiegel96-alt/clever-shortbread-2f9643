@@ -1,14 +1,7 @@
 {
-  "brands": [
-    {
-      "name": "Tayco Brace",
-      "owner": "Will",
-      "ts": 1789756983885
-    }
-  ],
+  "brands": [],
   "pendingApprovals": [],
   "_deletedKeys": {},
   "_deletedPendingIds": {},
-  "_brandsResetV1": true,
-  "_leonRemovedV1": true
+  "_brandsResetV1": true
 }
