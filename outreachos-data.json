@@ -37709,56 +37709,6 @@
       "name": "Ray-Ban",
       "owner": "Justin",
       "ts": 1789687955918
-    },
-    {
-      "name": "Casely",
-      "owner": "Adir",
-      "ts": 1789761313057
-    },
-    {
-      "name": "Loop Earplugs",
-      "owner": "Adir",
-      "ts": 1789761313068
-    },
-    {
-      "name": "SlimFold",
-      "owner": "Adir",
-      "ts": 1789761313077
-    },
-    {
-      "name": "Cleancult",
-      "owner": "Adir",
-      "ts": 1789761313085
-    },
-    {
-      "name": "LastObject",
-      "owner": "Adir",
-      "ts": 1789761313091
-    },
-    {
-      "name": "Sud Scrub",
-      "owner": "Adir",
-      "ts": 1789761313097
-    },
-    {
-      "name": "Kinship",
-      "owner": "Adir",
-      "ts": 1789761313103
-    },
-    {
-      "name": "DUNE Suncare",
-      "owner": "Adir",
-      "ts": 1789761313110
-    },
-    {
-      "name": "BRAVO SIERRA",
-      "owner": "Adir",
-      "ts": 1789761313116
-    },
-    {
-      "name": "NéCessaire",
-      "owner": "Adir",
-      "ts": 1789761313122
     }
   ],
   "pendingApprovals": [
@@ -37975,6 +37925,24 @@
       ],
       "ts": 1789678512923,
       "id": "1789678512923_wxhdj1j4fz"
+    },
+    {
+      "name": "Rolling Square",
+      "requestedBy": "Adir",
+      "matchedBrands": [
+        "Rolling Thunder"
+      ],
+      "ts": 1789761339152,
+      "id": "1789761339152_y9jprc52k5"
+    },
+    {
+      "name": "Clutch",
+      "requestedBy": "Adir",
+      "matchedBrands": [
+        "Clutch Chairz"
+      ],
+      "ts": 1789761340152,
+      "id": "1789761340152_q7mb76hy8dg"
     }
   ],
   "_deletedKeys": {},
