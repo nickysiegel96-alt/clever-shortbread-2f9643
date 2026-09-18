@@ -291,7 +291,26 @@
       "ts": 1789763800138
     }
   ],
-  "pendingApprovals": [],
+  "pendingApprovals": [
+    {
+      "name": "Clutch",
+      "requestedBy": "Adir",
+      "matchedBrands": [
+        "Clutch Chairz"
+      ],
+      "ts": 1789761340152,
+      "id": "1789761340152_q7mb76hy8dg"
+    },
+    {
+      "name": "Henson Shaving",
+      "requestedBy": "Adir",
+      "matchedBrands": [
+        "JRM Shaving Co"
+      ],
+      "ts": 1789761355885,
+      "id": "1789761355885_0tok7zyoyk8b"
+    }
+  ],
   "_deletedKeys": {},
   "_deletedPendingIds": {},
   "_lastRemoteBrandKeys": {},
