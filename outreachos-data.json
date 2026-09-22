@@ -1,10 +1,172 @@
 {
-  "brands": [],
+  "brands": [
+    {
+      "name": "TayCo Brace",
+      "owner": "Will",
+      "ts": 1790110618120
+    },
+    {
+      "name": "Epic Dental",
+      "owner": "Will",
+      "ts": 1790110618120
+    },
+    {
+      "name": "Top Cup Team",
+      "owner": "Will",
+      "ts": 1790110618121
+    },
+    {
+      "name": "EvenFlo",
+      "owner": "Will",
+      "ts": 1790110618122
+    },
+    {
+      "name": "Nuna",
+      "owner": "Will",
+      "ts": 1790110618122
+    },
+    {
+      "name": "Mockingbird",
+      "owner": "Will",
+      "ts": 1790110618123
+    },
+    {
+      "name": "Bums And Roses",
+      "owner": "Will",
+      "ts": 1790110618124
+    },
+    {
+      "name": "Janie And Jack",
+      "owner": "Will",
+      "ts": 1790110618124
+    },
+    {
+      "name": "Little Sleepies",
+      "owner": "Will",
+      "ts": 1790110618125
+    },
+    {
+      "name": "Parker Baby",
+      "owner": "Will",
+      "ts": 1790110618125
+    },
+    {
+      "name": "Monica + Andy",
+      "owner": "Will",
+      "ts": 1790110618126
+    },
+    {
+      "name": "Burt'S Bees Baby",
+      "owner": "Will",
+      "ts": 1790110618126
+    },
+    {
+      "name": "Babysense",
+      "owner": "Will",
+      "ts": 1790110618127
+    },
+    {
+      "name": "Mikucare",
+      "owner": "Will",
+      "ts": 1790110618127
+    },
+    {
+      "name": "Momcozy",
+      "owner": "Will",
+      "ts": 1790110618127
+    },
+    {
+      "name": "VAVA",
+      "owner": "Will",
+      "ts": 1790110618128
+    },
+    {
+      "name": "IBaby Labs",
+      "owner": "Will",
+      "ts": 1790110618128
+    },
+    {
+      "name": "Wyze",
+      "owner": "Will",
+      "ts": 1790110618129
+    },
+    {
+      "name": "Fat Brain Toys",
+      "owner": "Will",
+      "ts": 1790110618129
+    },
+    {
+      "name": "Little Tikes",
+      "owner": "Will",
+      "ts": 1790110618129
+    },
+    {
+      "name": "Lovevery",
+      "owner": "Will",
+      "ts": 1790110618130
+    },
+    {
+      "name": "Melissa & Doug",
+      "owner": "Will",
+      "ts": 1790110618130
+    },
+    {
+      "name": "Bruder Toys",
+      "owner": "Will",
+      "ts": 1790110618131
+    },
+    {
+      "name": "Little English",
+      "owner": "Will",
+      "ts": 1790110618131
+    },
+    {
+      "name": "Battat Toys",
+      "owner": "Will",
+      "ts": 1790110618131
+    },
+    {
+      "name": "Jamie Kay",
+      "owner": "Will",
+      "ts": 1790110618132
+    },
+    {
+      "name": "Magna-Tiles",
+      "owner": "Will",
+      "ts": 1790110618132
+    },
+    {
+      "name": "Tomy",
+      "owner": "Will",
+      "ts": 1790110618133
+    },
+    {
+      "name": "Jolie",
+      "owner": "Will",
+      "ts": 1790110618133
+    },
+    {
+      "name": "Piru Cream",
+      "owner": "Will",
+      "ts": 1790110618134
+    },
+    {
+      "name": "Owlet",
+      "owner": "Will",
+      "ts": 1790110618134
+    },
+    {
+      "name": "Bex Sunglasses",
+      "owner": "Will",
+      "ts": 1790110618134
+    }
+  ],
   "pendingApprovals": [],
   "_deletedKeys": {},
   "_deletedPendingIds": {},
-  "_brandsResetV3": true,
   "_lastRemoteBrandKeys": {},
   "_lastRemotePendingIds": {},
-  "_leonRemovedV2": true
+  "_brandsResetV2": true,
+  "_leonRemovedV2": true,
+  "_brandsResetV3": true
 }
