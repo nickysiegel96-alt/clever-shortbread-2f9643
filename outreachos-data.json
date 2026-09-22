@@ -1,5 +1,11 @@
 {
-  "brands": [],
+  "brands": [
+    {
+      "name": "Youngla",
+      "owner": "Dylan",
+      "ts": 1790110519709
+    }
+  ],
   "pendingApprovals": [],
   "_deletedKeys": {},
   "_deletedPendingIds": {},
