@@ -3,9 +3,8 @@
   "pendingApprovals": [],
   "_deletedKeys": {},
   "_deletedPendingIds": {},
+  "_brandsResetV3": true,
   "_lastRemoteBrandKeys": {},
   "_lastRemotePendingIds": {},
-  "_brandsResetV2": true,
-  "_leonRemovedV2": true,
-  "_brandsResetV3": true
+  "_leonRemovedV2": true
 }
