@@ -451,89 +451,9 @@
       "ts": 1790119326848
     },
     {
-      "name": "Kicking World",
+      "name": "Accelerator Active Energy",
       "owner": "Max",
-      "ts": 1790119376635
-    },
-    {
-      "name": "Dri-Equip",
-      "owner": "Max",
-      "ts": 1790119386685
-    },
-    {
-      "name": "Plantiga",
-      "owner": "Max",
-      "ts": 1790119393868
-    },
-    {
-      "name": "Gamebreaker",
-      "owner": "Max",
-      "ts": 1790119411868
-    },
-    {
-      "name": "Vapor Dri",
-      "owner": "Max",
-      "ts": 1790119418284
-    },
-    {
-      "name": "Tough Shirt",
-      "owner": "Max",
-      "ts": 1790119426268
-    },
-    {
-      "name": "Brain Sentry",
-      "owner": "Max",
-      "ts": 1790119436968
-    },
-    {
-      "name": "The Seeker By Monark",
-      "owner": "Max",
-      "ts": 1790119458434
-    },
-    {
-      "name": "Certor",
-      "owner": "Max",
-      "ts": 1790119465567
-    },
-    {
-      "name": "Two.",
-      "owner": "Max",
-      "ts": 1790119471717
-    },
-    {
-      "name": "Northyard",
-      "owner": "Max",
-      "ts": 1790119484601
-    },
-    {
-      "name": "Waffl.",
-      "owner": "Max",
-      "ts": 1790119496618
-    },
-    {
-      "name": "Beefys Owned",
-      "owner": "Max",
-      "ts": 1790119504718
-    },
-    {
-      "name": "Fuel Meals",
-      "owner": "Max",
-      "ts": 1790119514968
-    },
-    {
-      "name": "FTL",
-      "owner": "Max",
-      "ts": 1790119520351
-    },
-    {
-      "name": "KUXIU",
-      "owner": "Max",
-      "ts": 1790119529734
-    },
-    {
-      "name": "Rivel Athletics",
-      "owner": "Max",
-      "ts": 1790119535851
+      "ts": 1790119597734
     }
   ],
   "pendingApprovals": [],
