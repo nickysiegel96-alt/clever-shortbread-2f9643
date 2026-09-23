@@ -471,7 +471,17 @@
       "ts": 1790122465499
     }
   ],
-  "pendingApprovals": [],
+  "pendingApprovals": [
+    {
+      "name": "Skratch Labs",
+      "requestedBy": "Imbie",
+      "matchedBrands": [
+        "IBaby Labs"
+      ],
+      "ts": 1790131272452,
+      "id": "1790131272452_08wji0gjgcfe"
+    }
+  ],
   "_deletedKeys": {},
   "_deletedPendingIds": {},
   "_lastRemoteBrandKeys": {},
