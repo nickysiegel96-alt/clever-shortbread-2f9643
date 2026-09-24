@@ -814,10 +814,19 @@
       "name": "Nutrabolt",
       "owner": "Max",
       "ts": 1790259929083
+    },
+    {
+      "name": "Electrogum",
+      "owner": "Dylan",
+      "ts": 1790274508997
     }
   ],
   "pendingApprovals": [],
   "_brandsResetV2": true,
   "_leonRemovedV2": true,
-  "_brandsResetV3": true
+  "_brandsResetV3": true,
+  "_deletedKeys": {},
+  "_deletedPendingIds": {},
+  "_lastRemoteBrandKeys": {},
+  "_lastRemotePendingIds": {}
 }
