@@ -951,7 +951,17 @@
       "ts": 1790317888620
     }
   ],
-  "pendingApprovals": [],
+  "pendingApprovals": [
+    {
+      "name": "Clean Eats Kitchen",
+      "requestedBy": "Juan",
+      "matchedBrands": [
+        "Clean Machine"
+      ],
+      "ts": 1790318121255,
+      "id": "1790318121255_t1a5u79zkie"
+    }
+  ],
   "_brandsResetV2": true,
   "_leonRemovedV2": true,
   "_brandsResetV3": true
