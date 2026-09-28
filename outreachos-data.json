@@ -989,6 +989,11 @@
       "name": "Aspex Eyewear",
       "owner": "Cosie",
       "ts": 1790635477653
+    },
+    {
+      "name": "Iqbar",
+      "owner": "Max",
+      "ts": 1790635742821
     }
   ],
   "pendingApprovals": [
@@ -1004,9 +1009,5 @@
   ],
   "_brandsResetV2": true,
   "_leonRemovedV2": true,
-  "_brandsResetV3": true,
-  "_deletedKeys": {},
-  "_deletedPendingIds": {},
-  "_lastRemoteBrandKeys": {},
-  "_lastRemotePendingIds": {}
+  "_brandsResetV3": true
 }
