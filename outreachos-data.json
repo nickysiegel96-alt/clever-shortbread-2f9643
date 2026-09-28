@@ -1019,6 +1019,11 @@
       "name": "Cleer Audio",
       "owner": "Cosie",
       "ts": 1790637660884
+    },
+    {
+      "name": "Echo Water",
+      "owner": "Cosie",
+      "ts": 1790638416739
     }
   ],
   "pendingApprovals": [
@@ -1034,9 +1039,5 @@
   ],
   "_brandsResetV2": true,
   "_leonRemovedV2": true,
-  "_brandsResetV3": true,
-  "_deletedKeys": {},
-  "_deletedPendingIds": {},
-  "_lastRemoteBrandKeys": {},
-  "_lastRemotePendingIds": {}
+  "_brandsResetV3": true
 }
