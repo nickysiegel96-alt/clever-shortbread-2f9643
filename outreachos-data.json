@@ -586,11 +586,6 @@
       "ts": 1790132865618
     },
     {
-      "name": "Autobahn Fort Worth",
-      "owner": "Cosie",
-      "ts": 1790138192875
-    },
-    {
       "name": "Knockout Nutrition",
       "owner": "Max",
       "ts": 1790201918123
@@ -826,11 +821,6 @@
       "ts": 1790274897672
     },
     {
-      "name": "Academy Sports + Outdoors",
-      "owner": "Cosie",
-      "ts": 1790283887733
-    },
-    {
       "name": "Precision Fuel & Hydration",
       "owner": "Max",
       "ts": 1790286048455
@@ -1009,5 +999,9 @@
   ],
   "_brandsResetV2": true,
   "_leonRemovedV2": true,
-  "_brandsResetV3": true
+  "_brandsResetV3": true,
+  "_deletedKeys": {},
+  "_deletedPendingIds": {},
+  "_lastRemoteBrandKeys": {},
+  "_lastRemotePendingIds": {}
 }
