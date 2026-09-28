@@ -996,9 +996,9 @@
       "ts": 1790635742821
     },
     {
-      "name": "Jack Link'S",
-      "owner": "Max",
-      "ts": 1790635868769
+      "name": "Blenders Eyewear",
+      "owner": "Cosie",
+      "ts": 1790635927713
     }
   ],
   "pendingApprovals": [
@@ -1014,5 +1014,9 @@
   ],
   "_brandsResetV2": true,
   "_leonRemovedV2": true,
-  "_brandsResetV3": true
+  "_brandsResetV3": true,
+  "_deletedKeys": {},
+  "_deletedPendingIds": {},
+  "_lastRemoteBrandKeys": {},
+  "_lastRemotePendingIds": {}
 }
