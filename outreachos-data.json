@@ -3539,6 +3539,11 @@
       "name": "Smith Optics",
       "owner": "Max",
       "ts": 1790896389874
+    },
+    {
+      "name": "Bose",
+      "owner": "Max",
+      "ts": 1790896480178
     }
   ],
   "pendingApprovals": [
