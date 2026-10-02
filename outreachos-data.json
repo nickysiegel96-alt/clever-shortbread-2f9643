@@ -3584,6 +3584,16 @@
       "name": "COROS",
       "owner": "Max",
       "ts": 1790899020867
+    },
+    {
+      "name": "Logitech",
+      "owner": "Max",
+      "ts": 1790899531566
+    },
+    {
+      "name": "Razer",
+      "owner": "Max",
+      "ts": 1790899531567
     }
   ],
   "pendingApprovals": [
