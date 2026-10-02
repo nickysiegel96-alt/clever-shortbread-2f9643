@@ -4699,6 +4699,26 @@
       "name": "Capri Holdings",
       "owner": "Max",
       "ts": 1790977905184
+    },
+    {
+      "name": "Michael Kors",
+      "owner": "Max",
+      "ts": 1790977906008
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "owner": "Max",
+      "ts": 1790977906713
+    },
+    {
+      "name": "PVH",
+      "owner": "Max",
+      "ts": 1790977907459
+    },
+    {
+      "name": "Kate Spade",
+      "owner": "Max",
+      "ts": 1790977908277
     }
   ],
   "pendingApprovals": [
