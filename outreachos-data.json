@@ -4744,6 +4744,16 @@
       "name": "Mag Instrument",
       "owner": "Max",
       "ts": 1790977912349
+    },
+    {
+      "name": "Life360",
+      "owner": "Max",
+      "ts": 1790977913177
+    },
+    {
+      "name": "Peloton",
+      "owner": "Max",
+      "ts": 1790977914071
     }
   ],
   "pendingApprovals": [
