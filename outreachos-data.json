@@ -4804,6 +4804,36 @@
       "name": "Milwaukee Tool",
       "owner": "Max",
       "ts": 1790977921913
+    },
+    {
+      "name": "Snap-On",
+      "owner": "Max",
+      "ts": 1790977922686
+    },
+    {
+      "name": "Fiskars",
+      "owner": "Max",
+      "ts": 1790977923353
+    },
+    {
+      "name": "Sturm Ruger",
+      "owner": "Max",
+      "ts": 1790977924101
+    },
+    {
+      "name": "Craftsman",
+      "owner": "Max",
+      "ts": 1790977924905
+    },
+    {
+      "name": "Ryobi",
+      "owner": "Max",
+      "ts": 1790977925661
+    },
+    {
+      "name": "Husqvarna",
+      "owner": "Max",
+      "ts": 1790977926540
     }
   ],
   "pendingApprovals": [
