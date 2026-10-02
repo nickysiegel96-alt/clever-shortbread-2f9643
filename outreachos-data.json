@@ -4914,6 +4914,16 @@
       "name": "Smith & Wesson Brands",
       "owner": "Max",
       "ts": 1790978010640
+    },
+    {
+      "name": "Lifetime Brands",
+      "owner": "Max",
+      "ts": 1790978011376
+    },
+    {
+      "name": "Life Fitness",
+      "owner": "Max",
+      "ts": 1790978012153
     }
   ],
   "pendingApprovals": [
