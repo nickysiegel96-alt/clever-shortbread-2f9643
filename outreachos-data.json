@@ -4904,6 +4904,16 @@
       "name": "Newell Brands",
       "owner": "Max",
       "ts": 1790978009038
+    },
+    {
+      "name": "Solo Brands",
+      "owner": "Max",
+      "ts": 1790978009830
+    },
+    {
+      "name": "Smith & Wesson Brands",
+      "owner": "Max",
+      "ts": 1790978010640
     }
   ],
   "pendingApprovals": [
