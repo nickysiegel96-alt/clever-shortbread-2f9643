@@ -4614,6 +4614,31 @@
       "name": "NEBO",
       "owner": "Max",
       "ts": 1790976348801
+    },
+    {
+      "name": "SureFire",
+      "owner": "Max",
+      "ts": 1790976349296
+    },
+    {
+      "name": "Princeton Tec",
+      "owner": "Max",
+      "ts": 1790976349886
+    },
+    {
+      "name": "Rayovac",
+      "owner": "Max",
+      "ts": 1790976350559
+    },
+    {
+      "name": "Seirus",
+      "owner": "Max",
+      "ts": 1790976351040
+    },
+    {
+      "name": "Thermacell",
+      "owner": "Max",
+      "ts": 1790976351626
     }
   ],
   "pendingApprovals": [
