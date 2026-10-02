@@ -4086,31 +4086,6 @@
       "ts": 1790968503553
     },
     {
-      "name": "Wiley X",
-      "owner": "Max",
-      "ts": 1790971386224
-    },
-    {
-      "name": "Tervis",
-      "owner": "Max",
-      "ts": 1790971386225
-    },
-    {
-      "name": "Vincero",
-      "owner": "Max",
-      "ts": 1790971386226
-    },
-    {
-      "name": "Sunglass Hut",
-      "owner": "Max",
-      "ts": 1790971447393
-    },
-    {
-      "name": "BioLite",
-      "owner": "Max",
-      "ts": 1790971447395
-    },
-    {
       "name": "Audio-Technica",
       "owner": "Max",
       "ts": 1790972017246
@@ -4121,11 +4096,6 @@
       "ts": 1790972017248
     },
     {
-      "name": "Hamilton",
-      "owner": "Max",
-      "ts": 1790972051656
-    },
-    {
       "name": "Gillette",
       "owner": "Max",
       "ts": 1790972077269
@@ -4134,11 +4104,6 @@
       "name": "Old Spice",
       "owner": "Max",
       "ts": 1790972077272
-    },
-    {
-      "name": "Hims & Hers",
-      "owner": "Max",
-      "ts": 1790972077274
     },
     {
       "name": "Lume",
@@ -4161,11 +4126,6 @@
       "ts": 1790972107257
     },
     {
-      "name": "Axe",
-      "owner": "Max",
-      "ts": 1790972107258
-    },
-    {
       "name": "Hydrapak",
       "owner": "Max",
       "ts": 1790972107259
@@ -4179,31 +4139,6 @@
       "name": "Coach",
       "owner": "Max",
       "ts": 1790972374921
-    },
-    {
-      "name": "Oral-B",
-      "owner": "Max",
-      "ts": 1790972374922
-    },
-    {
-      "name": "Sakar International",
-      "owner": "Max",
-      "ts": 1790972374923
-    },
-    {
-      "name": "Thule",
-      "owner": "Max",
-      "ts": 1790972374924
-    },
-    {
-      "name": "Fitbit",
-      "owner": "Max",
-      "ts": 1790972374925
-    },
-    {
-      "name": "Suunto",
-      "owner": "Max",
-      "ts": 1790972374927
     }
   ],
   "pendingApprovals": [
