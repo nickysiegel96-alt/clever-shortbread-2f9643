@@ -3661,11 +3661,6 @@
       "ts": 1790913803988
     },
     {
-      "name": "Camelbak",
-      "owner": "Max",
-      "ts": 1790915184413
-    },
-    {
       "name": "Contigo",
       "owner": "Max",
       "ts": 1790915184414
@@ -3701,19 +3696,9 @@
       "ts": 1790915184420
     },
     {
-      "name": "Casetify",
-      "owner": "Max",
-      "ts": 1790915184421
-    },
-    {
       "name": "Incase",
       "owner": "Max",
       "ts": 1790915184422
-    },
-    {
-      "name": "Dagne Dover",
-      "owner": "Max",
-      "ts": 1790915184423
     },
     {
       "name": "Chirp",
@@ -3749,21 +3734,6 @@
       "name": "Streamlight",
       "owner": "Max",
       "ts": 1790915242726
-    },
-    {
-      "name": "Julbo",
-      "owner": "Max",
-      "ts": 1790915242728
-    },
-    {
-      "name": "Beats",
-      "owner": "Max",
-      "ts": 1790915242729
-    },
-    {
-      "name": "Krewe",
-      "owner": "Max",
-      "ts": 1790915242730
     }
   ],
   "pendingApprovals": [
