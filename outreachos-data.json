@@ -5729,6 +5729,21 @@
       "name": "Kingston Technology",
       "owner": "Max",
       "ts": 1791047473081
+    },
+    {
+      "name": "PNY Technologies",
+      "owner": "Max",
+      "ts": 1791047474194
+    },
+    {
+      "name": "Verbatim Americas",
+      "owner": "Max",
+      "ts": 1791047475042
+    },
+    {
+      "name": "Lexar",
+      "owner": "Max",
+      "ts": 1791047475939
     }
   ],
   "pendingApprovals": [
