@@ -5514,6 +5514,16 @@
       "name": "Sealy",
       "owner": "Max",
       "ts": 1791045817871
+    },
+    {
+      "name": "Tempur Sealy",
+      "owner": "Max",
+      "ts": 1791045818564
+    },
+    {
+      "name": "Tuft & Needle",
+      "owner": "Max",
+      "ts": 1791045819598
     }
   ],
   "pendingApprovals": [
