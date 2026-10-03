@@ -5379,6 +5379,11 @@
       "name": "Starbucks",
       "owner": "Max",
       "ts": 1791042568592
+    },
+    {
+      "name": "Leupold",
+      "owner": "Max",
+      "ts": 1791042925624
     }
   ],
   "pendingApprovals": [
