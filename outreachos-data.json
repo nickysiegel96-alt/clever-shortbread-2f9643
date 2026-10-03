@@ -5179,6 +5179,26 @@
       "name": "Ulta Beauty",
       "owner": "Max",
       "ts": 1791042532589
+    },
+    {
+      "name": "Sally Beauty",
+      "owner": "Max",
+      "ts": 1791042533371
+    },
+    {
+      "name": "Brown-Forman",
+      "owner": "Max",
+      "ts": 1791042534332
+    },
+    {
+      "name": "Harley-Davidson",
+      "owner": "Max",
+      "ts": 1791042535134
+    },
+    {
+      "name": "Kenneth Cole Productions",
+      "owner": "Max",
+      "ts": 1791042536078
     }
   ],
   "pendingApprovals": [
