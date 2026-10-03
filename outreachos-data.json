@@ -5494,6 +5494,16 @@
       "name": "Jackery",
       "owner": "Max",
       "ts": 1791045814134
+    },
+    {
+      "name": "Canon USA",
+      "owner": "Max",
+      "ts": 1791045815044
+    },
+    {
+      "name": "Polaroid",
+      "owner": "Max",
+      "ts": 1791045816060
     }
   ],
   "pendingApprovals": [
