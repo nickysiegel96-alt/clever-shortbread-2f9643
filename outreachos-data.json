@@ -5744,6 +5744,16 @@
       "name": "Lexar",
       "owner": "Max",
       "ts": 1791047475939
+    },
+    {
+      "name": "Micron/Crucial",
+      "owner": "Max",
+      "ts": 1791047476939
+    },
+    {
+      "name": "Dell Technologies",
+      "owner": "Max",
+      "ts": 1791047477821
     }
   ],
   "pendingApprovals": [
