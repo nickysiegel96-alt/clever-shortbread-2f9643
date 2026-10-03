@@ -5319,6 +5319,21 @@
       "name": "Motorola Mobility",
       "owner": "Max",
       "ts": 1791042557735
+    },
+    {
+      "name": "Lenovo",
+      "owner": "Max",
+      "ts": 1791042558742
+    },
+    {
+      "name": "Makita USA",
+      "owner": "Max",
+      "ts": 1791042559540
+    },
+    {
+      "name": "Bosch Power Tools",
+      "owner": "Max",
+      "ts": 1791042560444
     }
   ],
   "pendingApprovals": [
