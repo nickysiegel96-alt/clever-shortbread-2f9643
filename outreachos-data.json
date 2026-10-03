@@ -5754,6 +5754,11 @@
       "name": "Dell Technologies",
       "owner": "Max",
       "ts": 1791047477821
+    },
+    {
+      "name": "Microsoft",
+      "owner": "Max",
+      "ts": 1791047478645
     }
   ],
   "pendingApprovals": [
