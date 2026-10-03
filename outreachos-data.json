@@ -5104,6 +5104,16 @@
       "name": "Withings",
       "owner": "Max",
       "ts": 1791037910811
+    },
+    {
+      "name": "Jiobit",
+      "owner": "Max",
+      "ts": 1791037911696
+    },
+    {
+      "name": "Eufy",
+      "owner": "Max",
+      "ts": 1791037912684
     }
   ],
   "pendingApprovals": [
