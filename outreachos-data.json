@@ -5369,6 +5369,16 @@
       "name": "1-800 Contacts",
       "owner": "Max",
       "ts": 1791042566798
+    },
+    {
+      "name": "LensCrafters",
+      "owner": "Max",
+      "ts": 1791042567835
+    },
+    {
+      "name": "Starbucks",
+      "owner": "Max",
+      "ts": 1791042568592
     }
   ],
   "pendingApprovals": [
