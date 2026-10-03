@@ -5404,6 +5404,21 @@
       "name": "Acushnet",
       "owner": "Max",
       "ts": 1791045798108
+    },
+    {
+      "name": "TaylorMade",
+      "owner": "Max",
+      "ts": 1791045798949
+    },
+    {
+      "name": "Riddell",
+      "owner": "Max",
+      "ts": 1791045799657
+    },
+    {
+      "name": "Everlast",
+      "owner": "Max",
+      "ts": 1791045800541
     }
   ],
   "pendingApprovals": [
