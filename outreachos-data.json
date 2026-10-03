@@ -5484,6 +5484,16 @@
       "name": "SanDisk",
       "owner": "Max",
       "ts": 1791045812124
+    },
+    {
+      "name": "Seagate",
+      "owner": "Max",
+      "ts": 1791045813207
+    },
+    {
+      "name": "Jackery",
+      "owner": "Max",
+      "ts": 1791045814134
     }
   ],
   "pendingApprovals": [
