@@ -7419,6 +7419,16 @@
       "name": "Wells Coffee Company",
       "owner": "Jared",
       "ts": 1791256487993
+    },
+    {
+      "name": "BIGFACE COFFEE",
+      "owner": "Jared",
+      "ts": 1791256489058
+    },
+    {
+      "name": "Macondo Coffee Roasters",
+      "owner": "Jared",
+      "ts": 1791256489757
     }
   ],
   "pendingApprovals": [
