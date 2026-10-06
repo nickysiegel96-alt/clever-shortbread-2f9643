@@ -7394,6 +7394,16 @@
       "name": "New York Prime",
       "owner": "Jared",
       "ts": 1791256482491
+    },
+    {
+      "name": "Crema Gourmet Espresso Bar",
+      "owner": "Jared",
+      "ts": 1791256483741
+    },
+    {
+      "name": "Resurrection Cup Coffee",
+      "owner": "Jared",
+      "ts": 1791256484757
     }
   ],
   "pendingApprovals": [
