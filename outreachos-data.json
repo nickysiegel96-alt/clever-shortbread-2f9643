@@ -9904,6 +9904,26 @@
       "name": "Suunto",
       "owner": "Max",
       "ts": 1791469620664
+    },
+    {
+      "name": "Bosch",
+      "owner": "Max",
+      "ts": 1791471498730
+    },
+    {
+      "name": "Pelikan",
+      "owner": "Max",
+      "ts": 1791471498733
+    },
+    {
+      "name": "Salewa",
+      "owner": "Max",
+      "ts": 1791471498736
+    },
+    {
+      "name": "Oberalp",
+      "owner": "Max",
+      "ts": 1791471498739
     }
   ],
   "pendingApprovals": [
