@@ -10494,6 +10494,11 @@
       "name": "Mattel",
       "owner": "Max",
       "ts": 1791663570884
+    },
+    {
+      "name": "Hasbro",
+      "owner": "Max",
+      "ts": 1791663755064
     }
   ],
   "pendingApprovals": [
