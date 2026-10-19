@@ -15399,6 +15399,31 @@
       "name": "Fulton Country Club",
       "owner": "Jared",
       "ts": 1792437193159
+    },
+    {
+      "name": "Jefferson City Country Club",
+      "owner": "Jared",
+      "ts": 1792437194342
+    },
+    {
+      "name": "Jefferson City Dental Care",
+      "owner": "Jared",
+      "ts": 1792437195640
+    },
+    {
+      "name": "Central Dental",
+      "owner": "Jared",
+      "ts": 1792437196308
+    },
+    {
+      "name": "Stadium Dental",
+      "owner": "Jared",
+      "ts": 1792437197058
+    },
+    {
+      "name": "High Street Dentistry",
+      "owner": "Jared",
+      "ts": 1792437197558
     }
   ],
   "pendingApprovals": [
