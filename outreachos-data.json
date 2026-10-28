@@ -12521,6 +12521,15 @@
       ],
       "ts": 1793145716272,
       "id": "1793145716272_2bl1c91816"
+    },
+    {
+      "name": "WOLACO",
+      "requestedBy": "Juan",
+      "matchedBrands": [
+        "LACO"
+      ],
+      "ts": 1793145717863,
+      "id": "1793145717863_1b1dwshjhcb"
     }
   ],
   "_brandsResetV2": true,
