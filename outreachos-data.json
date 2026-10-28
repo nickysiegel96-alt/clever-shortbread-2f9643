@@ -12559,6 +12559,21 @@
       ],
       "ts": 1793145738902,
       "id": "1793145738902_dxblwvhykfd"
+    },
+    {
+      "name": "Embr Labs",
+      "requestedBy": "Juan",
+      "matchedBrands": [
+        "IBaby Labs",
+        "Skratch Labs",
+        "EHP Labs",
+        "Friction Labs",
+        "Puro Sound Labs",
+        "JDS Labs",
+        "Fraz Labs"
+      ],
+      "ts": 1793145740573,
+      "id": "1793145740573_eqs7vd1uc57"
     }
   ],
   "_brandsResetV2": true,
