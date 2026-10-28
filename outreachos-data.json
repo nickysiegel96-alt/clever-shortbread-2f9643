@@ -12539,6 +12539,17 @@
       ],
       "ts": 1793145719564,
       "id": "1793145719564_a9h0bd4ez9e"
+    },
+    {
+      "name": "Cloth & Paper",
+      "requestedBy": "Juan",
+      "matchedBrands": [
+        "Beech Tree Paper",
+        "Doane Paper",
+        "Freenote Cloth"
+      ],
+      "ts": 1793145737222,
+      "id": "1793145737222_y7yle11xj3"
     }
   ],
   "_brandsResetV2": true,
