@@ -12550,6 +12550,15 @@
       ],
       "ts": 1793145737222,
       "id": "1793145737222_y7yle11xj3"
+    },
+    {
+      "name": "Davids",
+      "requestedBy": "Juan",
+      "matchedBrands": [
+        "Harley-Davidson"
+      ],
+      "ts": 1793145738902,
+      "id": "1793145738902_dxblwvhykfd"
     }
   ],
   "_brandsResetV2": true,
