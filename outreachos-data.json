@@ -12662,6 +12662,15 @@
       ],
       "ts": 1793145743944,
       "id": "1793145743944_6b2eyyscbg"
+    },
+    {
+      "name": "Monica Vinader",
+      "requestedBy": "Juan",
+      "matchedBrands": [
+        "Monica + Andy"
+      ],
+      "ts": 1793145833461,
+      "id": "1793145833461_ce66iiria8a"
     }
   ],
   "_brandsResetV2": true,
