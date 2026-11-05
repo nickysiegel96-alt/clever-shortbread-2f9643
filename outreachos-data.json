@@ -1196,11 +1196,6 @@
       "ts": 1790699309293
     },
     {
-      "name": "Untapped",
-      "owner": "Dylan",
-      "ts": 1790720958852
-    },
-    {
       "name": "Muir Energy",
       "owner": "Dylan",
       "ts": 1790720970938
@@ -15679,6 +15674,11 @@
       "name": "Spigen",
       "owner": "Adir",
       "ts": 1793893599802
+    },
+    {
+      "name": "LeorêVer",
+      "owner": "Dylan",
+      "ts": 1793894633101
     }
   ],
   "pendingApprovals": [
