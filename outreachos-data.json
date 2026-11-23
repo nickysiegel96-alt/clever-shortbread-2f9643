@@ -22299,6 +22299,61 @@
       "name": "Elegatto",
       "owner": "Max",
       "ts": 1795465433381
+    },
+    {
+      "name": "Ettinger",
+      "owner": "Juan",
+      "ts": 1795465466008
+    },
+    {
+      "name": "Peg And Awl",
+      "owner": "Juan",
+      "ts": 1795465466016
+    },
+    {
+      "name": "Paravel",
+      "owner": "Juan",
+      "ts": 1795465466026
+    },
+    {
+      "name": "MantraBand",
+      "owner": "Juan",
+      "ts": 1795465466033
+    },
+    {
+      "name": "CW&T",
+      "owner": "Juan",
+      "ts": 1795465466043
+    },
+    {
+      "name": "Nortvi",
+      "owner": "Juan",
+      "ts": 1795465466049
+    },
+    {
+      "name": "Speaqua",
+      "owner": "Juan",
+      "ts": 1795465466057
+    },
+    {
+      "name": "EYM",
+      "owner": "Juan",
+      "ts": 1795465466062
+    },
+    {
+      "name": "Lambert",
+      "owner": "Juan",
+      "ts": 1795465466071
+    },
+    {
+      "name": "Ensso",
+      "owner": "Juan",
+      "ts": 1795465466077
+    },
+    {
+      "name": "ARTIFACT",
+      "owner": "Juan",
+      "ts": 1795465466083
     }
   ],
   "pendingApprovals": [
